@@ -39,6 +39,12 @@
   environment.systemPackages = with pkgs; [
     home-manager
     xfce.xfce4-whiskermenu-plugin
+    xfce.xfce4-docklike-plugin
+    xfce.xfce4-battery-plugin
+    xfce.xfce4-power-manager
+    xfce.xfce4-timer-plugin
+    xfce.xfce4-systemload-plugin
+    xfce.xfce4-clipman-plugin
   ];
 
   services.displayManager.defaultSession = "xfce";

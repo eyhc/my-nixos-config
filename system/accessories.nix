@@ -19,13 +19,19 @@
     remmina
     stellarium
     terminator
+    xfce.orage
     xfce.xfburn
   ];
   
-  services.redshift = {
+  programs.thunar = {
     enable = true;
-    executable = "/bin/redshift-gtk";
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-media-tags-plugin
+      thunar-volman
+    ];
   };
+  
   services.geoclue2.enable = true;
   location.provider = "geoclue2";
 }
