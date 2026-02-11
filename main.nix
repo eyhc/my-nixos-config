@@ -18,7 +18,6 @@
     ./system/software/graphics.nix
     ./system/software/multimedia.nix
     ./system/software/dev.nix
-    ./system/software/flatpak.nix
     
     # system config
     ./system/config.nix

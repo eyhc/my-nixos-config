@@ -15,6 +15,8 @@
     gnupg
     home-manager
     htop
+    joplin-cli
+    joplin-desktop
     keepassxc
     nextcloud-client
     redshift
