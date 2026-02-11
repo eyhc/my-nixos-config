@@ -44,6 +44,8 @@
         
         current_time='\D{%H:%M:%S}'
         PS1="$YELLOW<$current_time> $RED\u$nc@$PURPLE\H$nc:$GREEN\w$YELLOW\$(git_prompt)$nc $YELLOW\$$nc "
+        
+        export PATH=$HOME/.npm/bin:$PATH
       '';
       shellOptions = [
   	    "histappend"

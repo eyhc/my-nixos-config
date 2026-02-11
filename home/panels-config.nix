@@ -44,15 +44,15 @@
       "plugins/plugin-1/view-mode" = 1;
       "plugins/plugin-1/favorites" = [
         "startcenter.desktop"
-        "org.kde.ark.desktop"
-        "xfburn.desktop"
-        "bruno.desktop"
-        "org.freecad.FreeCAD.desktop"
-        "xcas.desktop"
-        "gimp.desktop"
+        "texmaker.desktop"
         "com.obsproject.Studio.desktop"
         "fr.handbrake.ghb.desktop"
         "audacity.desktop"
+        "gimp.desktop"
+        "veracrypt.desktop"
+        "gparted.desktop"
+        "xcas.desktop"
+        "org.xfce.ristretto.desktop"
       ];
       # ----
       "plugins/plugin-2" = "separator";
@@ -74,7 +74,7 @@
       "plugins/plugin-5" = "systemload";
       "plugins/plugin-5/timeout" = mkUint 500;
       "plugins/plugin-5/timeout-seconds" = mkUint 1;
-      "plugins/plugin-5/uptime/enable" = false;
+      "plugins/plugin-5/uptime/enabled" = false;
       # ----
       "plugins/plugin-6" = "separator";
       "plugins/plugin-6/style" = uintZero;
@@ -109,9 +109,9 @@
         "+suspend"
         "-hibernate"
         "-hybrid-sleep"
-        "+shutdown"
+        "-shutdown"
         "-restart"
-        "-logout"
+        "+logout"
         "-logout-dialog"
       ];
       
@@ -173,7 +173,7 @@
       indicatorColorFromTheme=false
       inactiveColor=rgb(255,120,0)
       indicatorColor=rgb(64,191,168)
-      pinned=firefox;thunar;terminator;writer;calc;impress;draw;thunderbird;code-url-handler;texmaker;featherpad;galculator;xfce4-screenshooter;org.keepassxc.KeePassXC;chromium-browser;
+      pinned=firefox;thunar;terminator;writer;calc;impress;thunderbird;code;texmaker;featherpad;galculator;xfce4-screenshooter;org.keepassxc.KeePassXC;joplin;
       forceIconSize=false
       iconSize=38
       keyComboActive=false
