@@ -12,23 +12,29 @@
     valgrind
     coreboot-toolchain.riscv
     
-    # Python
-    #spyder
-    python312
-    #python312Packages.spyder
-    python312Packages.notebook
-    python312Packages.pip
-    python312Packages.pipx
-    python312Packages.numpy
-    python312Packages.opencv4Full
-    python312Packages.matplotlib
-    python312Packages.pandas
-    python312Packages.scikit-learn
-    python312Packages.ipykernel
-    python312Packages.ipython
-    python312Packages.powerline
-    python312Packages.pylint-venv
-    python312Packages.tkinter
+    # Python   
+    (python3.withPackages (python-pkgs: with python-pkgs; [
+      pandas
+      requests
+      notebook
+      numpy
+      dbus-python
+      tkinter
+      pylint
+      powerline
+      pip
+      pipx
+      numpy
+      opencv
+      matplotlib
+      pandas
+      scikit-learn
+      ipykernel
+      ipython
+      notebook
+      #spyder
+    ]))
+    
     
     # Java
     javaPackages.compiler.openjdk21

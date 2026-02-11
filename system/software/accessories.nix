@@ -2,9 +2,9 @@
 
 {
   environment.systemPackages = with pkgs; [
+    age
     kdePackages.ark
     backintime
-    conky
     featherpad
     galculator
     geoclue2
@@ -12,6 +12,8 @@
     giac-with-xcas
     gnome-font-viewer
     gparted
+    gnupg
+    home-manager
     htop
     keepassxc
     nextcloud-client
@@ -19,8 +21,12 @@
     remmina
     stellarium
     terminator
+    veracrypt
     xfce.orage
     xfce.xfburn
+    (pkgs.callPackage 
+      "${builtins.fetchTarball 
+        "https://github.com/ryantm/agenix/archive/main.tar.gz"}/pkgs/agenix.nix" {})
   ];
   
   programs.thunar = {
@@ -32,6 +38,9 @@
     ];
   };
   
-  services.geoclue2.enable = true;
-  location.provider = "geoclue2";
+  programs.gnupg = {
+    agent.enable = true;
+    agent.enableSSHSupport = true;
+    agent.pinentryPackage = pkgs.pinentry-curses;
+  };
 }

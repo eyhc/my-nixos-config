@@ -12,10 +12,10 @@
     meld
     qemu
     tig
-    virtualbox
   ];
   
-  users.groups.docker = {};
-  users.groups.vboxusers = {};
-  users.extraUsers.martin.extraGroups = [ "docker" "vboxsf" "vboxusers" ];
+  virtualisation.virtualbox = {
+    host.enable = true;
+    guest.enable = true;
+  };
 }

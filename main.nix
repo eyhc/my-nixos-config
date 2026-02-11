@@ -1,15 +1,33 @@
 { config, pkgs, ... }:
 
+
 {
+  age.identityPaths = [ "/home/martin/my-nixos-config/secrets/age.key" ];
+
   imports = [
-    ./system/prime.nix
-    ./system/devops.nix
+    # agenix module
+    "${builtins.fetchTarball 
+      "https://github.com/ryantm/agenix/archive/main.tar.gz"}/modules/age.nix"
+    
+    # softwares
+    ./system/software/prime.nix
+    ./system/software/devops.nix
+    ./system/software/internet.nix
+    ./system/software/office.nix
+    ./system/software/accessories.nix
+    ./system/software/graphics.nix
+    ./system/software/multimedia.nix
+    ./system/software/dev.nix
+    ./system/software/flatpak.nix
+    
+    # system config
+    ./system/config.nix
+    ./system/boot.nix
+    
+    # UI - XFCE
     ./system/ui.nix
-    ./system/internet.nix
-    ./system/office.nix
-    ./system/accessories.nix
-    ./system/graphics.nix
-    ./system/multimedia.nix
-    ./system/dev.nix
+    
+    # Hardware
+    ./hardware/common.nix
   ];
 }
