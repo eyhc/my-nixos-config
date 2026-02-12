@@ -1,6 +1,26 @@
 { config, lib, pkgs, ... }:
 
-{
+let
+  featherPadConfig = ''
+    [text]
+    appendEmptyLine=true
+    autoBracket=true
+    font="Monospace,10,-1,5,50,0,0,0,0,0"
+    lineNumbers=true
+    noWrap=false
+    showEndings=false
+    showWhiteSpace=false
+    textTabSize=2
+    vLineDistance=80
+      
+    [window]
+    position=@Point\(100 80\)
+    size=@Size\(800 500\)
+    hideSingleTab=true
+    hideSearchbar=true
+    showCursorPos=true
+  '';
+in {
   ## REDSHIFT
   services.redshift = {
     enable = true;
@@ -15,28 +35,10 @@
   };
 
   ## FEATHERPAD
-  xdg.configFile."featherpad/fp.conf" = {
-    force = true;
-    text = ''
-      [text]
-      appendEmptyLine=true
-      autoBracket=true
-      font="Monospace,10,-1,5,50,0,0,0,0,0"
-      lineNumbers=true
-      noWrap=false
-      showEndings=false
-      showWhiteSpace=false
-      textTabSize=2
-      vLineDistance=80
-      
-      [window]
-      position=@Point(100 80)
-      size=@Size(800 500)
-      hideSingleTab=true
-      hideSearchbar=true
-      showCursorPos=true
-    '';
-  };
+  home.activation.featherPadConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    mkdir -p "${config.xdg.configHome}/featherpad"
+    printf '%s\n' "${featherPadConfig}" > "${config.xdg.configHome}/featherpad/fp.conf"
+  '';
   
   ## GALCULATOR
   xdg.configFile."galculator/galculator.conf" = {

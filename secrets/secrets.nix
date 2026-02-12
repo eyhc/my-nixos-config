@@ -3,6 +3,7 @@ let
   secrets = [
     "guest.pass.age"
     "ecarrot.pass.age"
+    "nextcloud.pass.age"
   ];
 in builtins.listToAttrs (map (name: {
   inherit name;
