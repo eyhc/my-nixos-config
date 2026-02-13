@@ -155,6 +155,12 @@
       "xfce4-power-manager/show-presentation-indicator" = false;
       "xfce4-power-manager/presentation-mode" = false;
     };
+    
+    # SuperL -> whiskermenu
+    xfce4-keyboard-shortcuts = {
+      "commands/custom/Super_L" = "xfce4-popup-whiskermenu";
+    };
+    
   };
   
   ## DOCKLIKE Config

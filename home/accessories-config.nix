@@ -20,6 +20,18 @@ let
     hideSearchbar=true
     showCursorPos=true
   '';
+  
+  keePassConfig = ''
+    [GUI]
+    ApplicationTheme=classic
+  '';
+  
+  keePassCache = ''
+    [General]
+    LastActiveDatabase=/home/${config.home.username}/Nextcloud/passwords.kdbx
+    LastOpenedDatabases=/home/${config.home.username}/Nextcloud/passwords.kdbx
+  '';
+  
 in {
   ## REDSHIFT
   services.redshift = {
@@ -37,7 +49,18 @@ in {
   ## FEATHERPAD
   home.activation.featherPadConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     mkdir -p "${config.xdg.configHome}/featherpad"
-    printf '%s\n' "${featherPadConfig}" > "${config.xdg.configHome}/featherpad/fp.conf"
+    echo "${featherPadConfig}" > "${config.xdg.configHome}/featherpad/fp.conf"
+  '';
+  
+  ## KEEPASSXC
+  programs.keepassxc = {
+    enable = true;
+    autostart = false;
+  };
+  home.activation.keePassConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    mkdir -p "${config.xdg.configHome}/keepassxc" "${config.xdg.cacheHome}/keepassxc"
+    echo "${keePassConfig}" > "${config.xdg.configHome}/keepassxc/keepassxc.ini"
+    echo "${keePassCache}" > "${config.xdg.cacheHome}/keepassxc/keepassxc.ini"
   '';
   
   ## GALCULATOR

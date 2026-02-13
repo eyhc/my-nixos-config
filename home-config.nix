@@ -17,8 +17,7 @@ in {
     ./home/bash-config.nix
     ./home/ui-config.nix
     ./home/panels-config.nix
-    ./home/joplin-config.nix
-    ./home/nextcloud-config.nix
+    ./home/nextcloud-joplin-config.nix
   ];
   
   age.identityPaths = [ "/home/${user}/my-nixos-config/secrets/age.key" ];

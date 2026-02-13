@@ -24,6 +24,19 @@
     # XFWindow Manager THEME
     xfwm4 = {
       "general/theme" = "Qogir";
+      "general/show_dock_shadow" = false;
+      "general/show_frame_shadow" = false;
+      "general/show_popup_shadow" = false;
+      "general/tile_on_move" = true;
+      "general/snap_resist" = false;
+      "general/snap_to_border" = true;
+      "general/snap_to_windows" = true;
+      "general/click_to_focus" = false;
+      "general/focus_delay" = 600;
+      "general/raise_on_focus" = true;
+      "general/raise_delay" = 175;
+      "general/focus_new" = true;
+      "general/raise_on_click" = true;
     };
 
     # WALLPAPER
@@ -32,9 +45,9 @@
       image = "${pkgs.xfce.xfdesktop}/share/backgrounds/xfce/xfce-shapes.svg";
     in {
       "backdrop/screen0/monitorVirtual-1/workspace0/last-image" = image;  
-      "backdrop/screen0/monitoreDP/workspace0/last-image" = image;
+      "backdrop/screen0/monitoreDP-1/workspace0/last-image" = image;
       "backdrop/screen0/monitorVirtual-1/workspace0/image-style" = 5;
-      "backdrop/screen0/monitoreDP/workspace0/image-style" = 5;
+      "backdrop/screen0/monitoreDP-1/workspace0/image-style" = 5;
       "desktop-icons/primary" = true;
       "desktop-icons/single-click" = false;
       "desktop-icons/sort-folders-before-files" = true;
