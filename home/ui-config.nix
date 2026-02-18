@@ -27,6 +27,9 @@
       "general/show_dock_shadow" = false;
       "general/show_frame_shadow" = false;
       "general/show_popup_shadow" = false;
+      "general/box_resize" = true;
+      "general/wrap_windows" = false;
+      "general/wrap_workspaces" = false;
       "general/tile_on_move" = true;
       "general/snap_resist" = false;
       "general/snap_to_border" = true;

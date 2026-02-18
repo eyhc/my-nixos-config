@@ -3,8 +3,9 @@
 {
   environment.systemPackages = with pkgs; [
     age
-    kdePackages.ark
     backintime
+    #busybox
+    mate.engrampa
     featherpad
     galculator
     geoclue2
@@ -21,15 +22,20 @@
     nextcloud-client
     redshift
     remmina
+    rustdesk-flutter
     stellarium
     terminator
     veracrypt
     xfce.orage
     xfce.xfburn
+    zip
+    unzip
     (pkgs.callPackage 
       "${builtins.fetchTarball 
         "https://github.com/ryantm/agenix/archive/main.tar.gz"}/pkgs/agenix.nix" {})
   ];
+  
+  #nixpkgs.config.allowUnfree = true;
   
   programs.thunar = {
     enable = true;

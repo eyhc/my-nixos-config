@@ -56,6 +56,9 @@
     rapidjson
     xapian
     libmicrohttpd
+    
+    # Literate prog
+    noweb
   ];
   
   nixpkgs.config.allowUnfree = true;

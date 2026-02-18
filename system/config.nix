@@ -84,11 +84,4 @@
   };
   services.geoclue2.enable = true;
   location.provider = "geoclue2";
-  
-  # KEYMAP
-  console.keyMap = "fr";
-  services.xserver.xkb = {
-    layout = "fr";
-    variant = "";
-  };
 }
