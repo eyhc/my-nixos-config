@@ -3,10 +3,10 @@
 {
   environment.systemPackages = with pkgs; [
     # C / C++
-  	cmake
-  	gcc-arm-embedded
-  	gcc_multi
-  	gdb
+    cmake
+    gcc-arm-embedded
+    gcc_multi
+    gdb
     gnumake
     llvmPackages_20.clang-unwrapped
     valgrind

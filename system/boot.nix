@@ -6,7 +6,7 @@
       enable = true;
       theme = "nixos-bgrt";
       themePackages = with pkgs; [
-				nixos-bgrt-plymouth
+        nixos-bgrt-plymouth
         # By default we would install all themes
         #(adi1090x-plymouth-themes.override {
         #  selected_themes = [ "circuit" "dragon" "cross_hud" ];

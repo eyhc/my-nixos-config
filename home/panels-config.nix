@@ -143,7 +143,7 @@
       "plugins/plugin-25/hidden-files" = false;
       "plugins/plugin-25/icon-name" = "default-fileopen";
       "plugins/plugin-25/new-folder" = true;
-      "plugins/plugin-25/new-document" = true;      
+      "plugins/plugin-25/new-document" = true;
       "plugins/plugin-26" = "separator";
       "plugins/plugin-26/style" = uintZero;
     };

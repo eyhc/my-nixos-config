@@ -9,6 +9,6 @@
     mplayer
     obs-studio
     pavucontrol
-    vlc    
+    vlc
   ];
 }

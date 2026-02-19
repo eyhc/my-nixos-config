@@ -12,19 +12,19 @@
   users = {
     mutableUsers = true;
     users = {
-  	  guest = {
-  	    description = "Guest";
-  	    isNormalUser = true;
-  	    hashedPasswordFile = config.age.secrets.guestpass.path;
-  	    extraGroups = [ "networkmanager" ];
-  	  };
-  	
-  	  ecarrot = {
-  	    description = "Elie Carrot";
-  	    isNormalUser = true;
-  	    hashedPasswordFile = config.age.secrets.ecarrotpass.path;
-  	    extraGroups = [ "networkmanager" "wheel" "docker" "vboxusers" "vboxsf" ];
-  	  };
+      guest = {
+        description = "Guest";
+        isNormalUser = true;
+        hashedPasswordFile = config.age.secrets.guestpass.path;
+        extraGroups = [ "networkmanager" ];
+      };
+      
+      ecarrot = {
+        description = "Elie Carrot";
+        isNormalUser = true;
+        hashedPasswordFile = config.age.secrets.ecarrotpass.path;
+        extraGroups = [ "networkmanager" "wheel" "docker" "vboxusers" "vboxsf" ];
+      };
     };
   };
 

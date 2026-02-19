@@ -45,7 +45,7 @@ in {
     };
     tray = true;
   };
-
+  
   ## FEATHERPAD
   home.activation.featherPadConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     mkdir -p "${config.xdg.configHome}/featherpad"
@@ -53,10 +53,6 @@ in {
   '';
   
   ## KEEPASSXC
-  programs.keepassxc = {
-    enable = true;
-    autostart = false;
-  };
   home.activation.keePassConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     mkdir -p "${config.xdg.configHome}/keepassxc" "${config.xdg.cacheHome}/keepassxc"
     echo "${keePassConfig}" > "${config.xdg.configHome}/keepassxc/keepassxc.ini"
@@ -94,16 +90,16 @@ in {
           <directories/>
         </action>
         <action>
-	        <icon></icon>
-	        <name>Open root Thunar here</name>
-	        <submenu></submenu>
-	        <unique-id>1391443434179984-1</unique-id>
-	        <command>pkexec thunar %f</command>
-	        <description>Open this folder with administrative rights</description>
-	        <range></range>
-	        <patterns>*</patterns>
-	        <directories/>
-	      </action>
+          <icon></icon>
+          <name>Open root Thunar here</name>
+          <submenu></submenu>
+          <unique-id>1391443434179984-1</unique-id>
+          <command>pkexec thunar %f</command>
+          <description>Open this folder with administrative rights</description>
+          <range></range>
+          <patterns>*</patterns>
+          <directories/>
+        </action>
         <action>
           <icon></icon>
           <name>Create symlink</name>

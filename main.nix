@@ -1,6 +1,5 @@
 { config, pkgs, ... }:
 
-
 {
   age.identityPaths = [ "/home/martin/my-nixos-config/secrets/age.key" ];
 
