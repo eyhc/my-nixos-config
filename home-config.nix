@@ -2,6 +2,7 @@
 
 let
   user = "martin";
+  nur-pkgs = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/main.tar.gz") { inherit pkgs; };
 in {
   home = {
     username = user;
@@ -18,7 +19,12 @@ in {
     ./home/ui-config.nix
     ./home/panels-config.nix
     ./home/nextcloud-joplin-config.nix
+    ./home/internet-config.nix
   ];
   
   age.identityPaths = [ "/home/${user}/my-nixos-config/secrets/age.key" ];
+  
+  nixpkgs.overlays = [
+    (self: super: { nur = nur-pkgs; })
+  ];
 }
