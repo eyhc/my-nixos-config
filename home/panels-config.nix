@@ -179,7 +179,7 @@
       indicatorColorFromTheme=false
       inactiveColor=rgb(255,120,0)
       indicatorColor=rgb(64,191,168)
-      pinned=firefox;thunar;terminator;writer;calc;impress;thunderbird;code;texmaker;featherpad;galculator;xfce4-screenshooter;org.keepassxc.KeePassXC;joplin;
+      pinned=firefox;thunar;terminator;writer;calc;impress;thunderbird;codium-url-handler;texmaker;featherpad;galculator;xfce4-screenshooter;org.keepassxc.KeePassXC;joplin;
       forceIconSize=false
       iconSize=38
       keyComboActive=false

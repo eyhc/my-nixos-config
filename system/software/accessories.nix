@@ -1,15 +1,14 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   environment.systemPackages = with pkgs; [
     age
     backintime
-    #busybox
     mate.engrampa
     featherpad
     galculator
     geoclue2
-    #geogebra6
+    geogebra6
     giac-with-xcas
     gnome-font-viewer
     gparted
@@ -20,6 +19,7 @@
     joplin-desktop
     keepassxc
     nextcloud-client
+    pandoc
     redshift
     remmina
     rustdesk-flutter
@@ -35,8 +35,6 @@
         "https://github.com/ryantm/agenix/archive/main.tar.gz"}/pkgs/agenix.nix" {})
   ];
   
-  #nixpkgs.config.allowUnfree = true;
-  
   programs.thunar = {
     enable = true;
     plugins = with pkgs.xfce; [
@@ -51,4 +49,9 @@
     agent.enableSSHSupport = true;
     agent.pinentryPackage = pkgs.pinentry-curses;
   };
+  
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "veracrypt"
+    "geogebra"
+  ];
 }
