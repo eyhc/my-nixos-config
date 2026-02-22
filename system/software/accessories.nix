@@ -9,15 +9,19 @@
     galculator
     geoclue2
     geogebra6
+    kdePackages.ghostwriter
     giac-with-xcas
     gnome-font-viewer
+    gnome-keyring
     gparted
     gnupg
     home-manager
     htop
     joplin-cli
     joplin-desktop
+    jq
     keepassxc
+    lsof
     nextcloud-client
     pandoc
     redshift
@@ -49,9 +53,6 @@
     agent.enableSSHSupport = true;
     agent.pinentryPackage = pkgs.pinentry-curses;
   };
-  
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "veracrypt"
-    "geogebra"
-  ];
+
+  services.gnome.gnome-keyring.enable = true;
 }

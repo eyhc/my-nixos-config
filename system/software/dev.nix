@@ -1,16 +1,21 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   environment.systemPackages = with pkgs; [
-    # C / C++
+    # C / C++ / EMBEDDED
     cmake
     gcc-arm-embedded
-    gcc_multi
+    gcc
     gdb
     gnumake
     llvmPackages_20.clang-unwrapped
     valgrind
     coreboot-toolchain.riscv
+    cpplint
+    cppcheck
+    platformio-core
+    minicom
+    picocom
     
     # Python   
     (python3.withPackages (python-pkgs: with python-pkgs; [
@@ -49,19 +54,16 @@
     rustup
     
     # Editors
-    vscodium
+    vscode
     neovim
     
     # Library
     rapidjson
     xapian
     libmicrohttpd
+    libsecret
     
     # Literate prog
     noweb
   ];
-  
-  #nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-  #  "vscode"
-  #];
 }

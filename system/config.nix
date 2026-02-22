@@ -4,10 +4,10 @@
   # USERS
   users.groups.docker = {};
   users.groups.vboxusers = {};
-  
+
   age.secrets.guestpass.file = ../secrets/guest.pass.age;
   age.secrets.ecarrotpass.file = ../secrets/ecarrot.pass.age;
-  
+
   # wheel for sudoers
   users = {
     mutableUsers = true;
@@ -23,7 +23,9 @@
         description = "Elie Carrot";
         isNormalUser = true;
         hashedPasswordFile = config.age.secrets.ecarrotpass.path;
-        extraGroups = [ "networkmanager" "wheel" "docker" "vboxusers" "vboxsf" ];
+        extraGroups = [ 
+          "networkmanager" "wheel" "docker" "vboxusers" "vboxsf" "dialout"
+        ];
       };
     };
   };
@@ -40,7 +42,7 @@
 
   # BLUETOOTH
   services.blueman.enable = true;
-  
+
   # PRINTERS
   services.printing.enable = true;
 
@@ -67,7 +69,7 @@
       };
     };
   };
-  
+
   # LOCATION
   time.timeZone = "Europe/Paris";
   i18n.defaultLocale = "en_US.UTF-8";
