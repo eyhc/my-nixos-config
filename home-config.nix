@@ -6,7 +6,7 @@ let
 in {
   home = {
     username = user;
-    homeDirectory = "/home/${user}";
+    homeDirectory = "/home/${config.home.username}";
     stateVersion = "25.11";
   };
   

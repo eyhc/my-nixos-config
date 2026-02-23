@@ -25,19 +25,22 @@ in {
   age.secrets.joplin.file = ../secrets/nextcloud.pass.age;
   
   home.activation.joplinConfig = lib.hm.dag.entryAfter [ "reloadSystemd" ] ''
-    ${systemctlExec} --user stop joplin-autostart.service
-    rm -rf ${joplinConfigPath}
-    JOPLIN_PW=`cat ${config.age.secrets.joplin.path}`
-    
-    ${joplinExec} --profile ${joplinConfigPath} config sync.target 5
-    ${joplinExec} --profile ${joplinConfigPath} config sync.5.path https://drive.shadow.tech/remote.php/webdav/Joplin
-    ${joplinExec} --profile ${joplinConfigPath} config sync.5.username elie.carrot-5892
-    ${joplinExec} --profile ${joplinConfigPath} config sync.5.password $JOPLIN_PW
-    ${joplinExec} --profile ${joplinConfigPath} config sync.interval 600
-    ${joplinExec} --profile ${joplinConfigPath} config locale fr_FR
-    ${joplinExec} --profile ${joplinConfigPath} config spellChecker.languages '["en-GB", "fr-FR"]'
-    
-    ${systemctlExec} --user start joplin-autostart.service
+    if [ ! -d "${joplinConfigPath}" ]; then
+      ${systemctlExec} --user stop joplin-autostart.service
+      JOPLIN_PW=`cat ${config.age.secrets.joplin.path}`
+      
+      ${joplinExec} --profile ${joplinConfigPath} config sync.target 5
+      ${joplinExec} --profile ${joplinConfigPath} config sync.5.path https://drive.shadow.tech/remote.php/webdav/Joplin
+      ${joplinExec} --profile ${joplinConfigPath} config sync.5.username elie.carrot-5892
+      ${joplinExec} --profile ${joplinConfigPath} config sync.5.password $JOPLIN_PW
+      ${joplinExec} --profile ${joplinConfigPath} config sync.interval 600
+      ${joplinExec} --profile ${joplinConfigPath} config locale fr_FR
+      ${joplinExec} --profile ${joplinConfigPath} config spellChecker.languages '["en-GB", "fr-FR"]'
+      
+      ${systemctlExec} --user start joplin-autostart.service
+    else
+      printf "\e[0;31m  /!\\ Joplin config already exists, skipping setup.\e[0m\n"
+    fi
   '';
 
   ## NEXTCLOUD
