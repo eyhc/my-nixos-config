@@ -8,19 +8,19 @@
     enable = true;
     enableGnomeExtensions = false;
     languagePacks = [ "en-GB" "fr" ];
-    
+
     # POLICIES
     policies = {
       AppAutoUpdate = true;
       AllowFileSelectionDialogs = true;
-      
+
       AutofillCreditCardEnabled = false;
       BrowserDataBackup = {
         AllowBackup = false;
         AllowRestore = false;
       };
       CaptivePortal = true;
-      
+
       DisableFeedbackCommands = true;
       DisableFirefoxAccounts = true;
       DisableFirefoxScreenshots = true;
@@ -32,18 +32,18 @@
       DisableProfileRefresh = true;
       DisableSetDesktopBackground = true;
       DisableTelemetry = true;
-      
+
       DisplayBookmarksToolbar = "always";
       DisplayMenuBar = "never";
-      
+
       BlockAboutProfiles = true;
       BlockAboutConfig = true;
       BlockAboutSupport = true;
-      
+
       GenerativeAI = {
         Enabled = false;
       };
-      
+
       FirefoxHome = {
         Search = true;
         TopSites = false;
@@ -60,23 +60,23 @@
         Locked = true;
         StartPage = "none";
       };
-      
+
       NewTabPage = true;
       OfferToSaveLogins = false;
       PasswordManagerEnabled = false;
-      
+
       PictureInPicture = true;
       PrintingEnabled = true;
       PrivateBrowsingModeAvailability = 0;
       ShowHomeButton = false;
-      
+
       Extensions = {
         Install = [
           "https://addons.mozilla.org/firefox/downloads/file/4689687/eclipse_gray-1.0.xpi"
         ];
       };
     };
-    
+
     # PROFILE
     profiles.default = {
       # SEARCH ENGINE
@@ -85,7 +85,7 @@
         default = "ddg";
         privateDefault = "ddg";
       };
-      
+
       # BOOKMARKS
       bookmarks = {
         force = true;
@@ -131,7 +131,7 @@
           }
         ];
       };
-      
+
       # EXTENSIONS
       extensions = {
         packages = with pkgs.nur.repos.rycee.firefox-addons; [
@@ -141,18 +141,19 @@
           keepassxc-browser
           improved-tube
           tournesol
+          french-dictionary
         ];
       };
-      
+
       settings = {
         "extensions.autoDisableScopes" = 0;
       };
     };
   };
-  
+
   nixpkgs.config.allowUnfree = true;
-  
-  
+
+
   ##############################################################################
   ##                             THUNDERBIRD                                  ##
   ##############################################################################
@@ -180,7 +181,7 @@
             useStartTls = true;
           };
         };
-        
+
         primary = true;
       };
 
@@ -207,7 +208,7 @@
           };
         };
       };
-      
+
       gmail = {
         thunderbird.enable = true;
         address = "eyh.carrot@gmail.com";
@@ -216,11 +217,27 @@
       };
     };
   };
-  
+
   programs.thunderbird = {
     enable = true;
     profiles = {
       uga.isDefault = true;
+    };
+  };
+
+  systemd.user.services.thunderbird-autostart = {
+    Unit = {
+      Description = "Thunderbird Mail Client";
+      After = [ "graphical-session.target" ];
+    };
+
+    Service = {
+      ExecStart = "${pkgs.thunderbird}/bin/thunderbird";
+      Restart = "on-failure";
+    };
+
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
     };
   };
 }
