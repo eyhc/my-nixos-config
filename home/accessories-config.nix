@@ -24,6 +24,9 @@ let
   keePassConfig = ''
     [GUI]
     ApplicationTheme=classic
+
+    [Browser]
+    Enabled=true
   '';
   
   keePassCache = ''
@@ -58,6 +61,22 @@ in {
     echo "${keePassConfig}" > "${config.xdg.configHome}/keepassxc/keepassxc.ini"
     echo "${keePassCache}" > "${config.xdg.cacheHome}/keepassxc/keepassxc.ini"
   '';
+
+  systemd.user.services.keepassxc-autostart = {
+    Unit = {
+      Description = "KeePassXC Password Manager";
+      After = [ "graphical-session.target" ];
+    };
+
+    Service = {
+      ExecStart = "${pkgs.keepassxc}/bin/keepassxc";
+      Restart = "on-failure";
+    };
+
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+  };
   
   ## GALCULATOR
   xdg.configFile."galculator/galculator.conf" = {
@@ -115,6 +134,18 @@ in {
           <text-files/>
         </action>
       </actions>
+    '';
+  };
+
+  xdg.configFile."gtk-3.0/bookmarks" = {
+    force = true;
+    text = ''
+      file://${config.home.homeDirectory}/Documents
+      file://${config.home.homeDirectory}/Pictures
+      file://${config.home.homeDirectory}/Music
+      file://${config.home.homeDirectory}/Videos
+      file://${config.home.homeDirectory}/Downloads
+      file://${config.home.homeDirectory}/Nextcloud
     '';
   };
 }
