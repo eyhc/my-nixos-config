@@ -21,6 +21,7 @@ in {
     ./home/nextcloud-joplin-config.nix
     ./home/internet-config.nix
     ./home/vscode-config.nix
+    ./home/git-ssh-config.nix
   ];
   
   age.identityPaths = [ "/home/${user}/my-nixos-config/secrets/age.key" ];
