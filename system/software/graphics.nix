@@ -5,7 +5,7 @@
     imagemagick
     inkscape
     freecad
-    gimp2-with-plugins
+    gimp-with-plugins
     sane-backends
     simple-scan
   ];
