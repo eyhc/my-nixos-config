@@ -49,8 +49,10 @@
     in {
       "backdrop/screen0/monitorVirtual-1/workspace0/last-image" = image;  
       "backdrop/screen0/monitoreDP-1/workspace0/last-image" = image;
+      "backdrop/screen0/monitorHDMI-1/workspace0/last-image" = image;
       "backdrop/screen0/monitorVirtual-1/workspace0/image-style" = 5;
       "backdrop/screen0/monitoreDP-1/workspace0/image-style" = 5;
+      "backdrop/screen0/monitorHDMI-1/workspace0/image-style" = 5;
       "desktop-icons/primary" = true;
       "desktop-icons/single-click" = false;
       "desktop-icons/sort-folders-before-files" = true;

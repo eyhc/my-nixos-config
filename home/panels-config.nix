@@ -130,6 +130,7 @@
       # ----
       "plugins/plugin-20" = "docklike";
       "plugins/plugin-21" = "separator";
+      "plugins/plugin-21/style" = mkUint 1;
       # ----
       "plugins/plugin-22" = "separator";
       "plugins/plugin-22/style" = uintZero;
@@ -139,7 +140,7 @@
       "plugins/plugin-24/style" = uintZero;
       # ----
       "plugins/plugin-25" = "directorymenu";
-      "plugins/plugin-25/base-directory" = "/home/martin";
+      "plugins/plugin-25/base-directory" = config.home.homeDirectory;
       "plugins/plugin-25/hidden-files" = false;
       "plugins/plugin-25/icon-name" = "default-fileopen";
       "plugins/plugin-25/new-folder" = true;
@@ -173,7 +174,7 @@
       inactiveIndicatorStyle=2
       indicatorOrientation=0
       onlyDisplayVisible=true
-      onlyDisplayScreen=true
+      onlyDisplayScreen=false
       showPreviews=false
       showWindowCount=false
       indicatorColorFromTheme=false
