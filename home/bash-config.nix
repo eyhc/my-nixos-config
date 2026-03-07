@@ -63,16 +63,5 @@
         profiles.default.use_system_font = false;
       };
     };
-    
-    git = {
-      enable = true;
-      settings = {
-        user = {
-          name  = "Elie Carrot";
-          email = "eyh.carrot@gmail.com";
-        };
-        init.defaultBranch = "main";
-      };
-    };
   };
 }

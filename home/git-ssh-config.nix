@@ -9,6 +9,7 @@
         name = "Elie Carrot";
         email = "eyh.carrot@gmail.com";
       };
+      init.defaultBranch = "main";
       alias = {
         s = "status";
         co = "checkout";

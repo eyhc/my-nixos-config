@@ -232,8 +232,10 @@
     };
 
     Service = {
+      ExecStartPre = "${pkgs.coreutils}/bin/sleep 5";
       ExecStart = "${pkgs.thunderbird}/bin/thunderbird";
       Restart = "on-failure";
+      RestartSec = 1;
     };
 
     Install = {

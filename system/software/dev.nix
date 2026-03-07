@@ -29,6 +29,8 @@
       powerline
       pip
       pipx
+      pycairo
+      pygobject3
       numpy
       opencv
       matplotlib
@@ -38,6 +40,9 @@
       ipython
       notebook
       #spyder
+      z3-solver
+      meshtastic
+      meshcore
     ]))
     
     
