@@ -14,8 +14,10 @@
     cpplint
     cppcheck
     platformio-core
+    openocd
     minicom
     picocom
+    tio
     
     # Python   
     (python3.withPackages (python-pkgs: with python-pkgs; [
@@ -31,6 +33,7 @@
       pipx
       pycairo
       pygobject3
+      pyserial
       numpy
       opencv
       matplotlib
@@ -44,7 +47,6 @@
       meshtastic
       meshcore
     ]))
-    
     
     # Java
     javaPackages.compiler.openjdk21
@@ -67,8 +69,25 @@
     xapian
     libmicrohttpd
     libsecret
+    libusb1
     
-    # Literate prog
-    noweb
+    # stm
+    stlink
+    stlink-gui
+    probe-rs-tools
+
+    # kicad - fritzing
+    kicad
+    fritzing
   ];
+  
+  services.udev = {
+    enable = true;
+    packages = with pkgs; [
+      stlink
+      stlink-gui
+      probe-rs-tools
+      openocd
+    ];
+  };
 }
