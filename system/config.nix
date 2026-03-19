@@ -24,7 +24,7 @@
         isNormalUser = true;
         hashedPasswordFile = config.age.secrets.ecarrotpass.path;
         extraGroups = [ 
-          "networkmanager" "wheel" "docker" "vboxusers" "vboxsf" "dialout"
+          "networkmanager" "wheel" "docker" "vboxusers" "vboxsf" "dialout" "scanner"
         ];
       };
     };
