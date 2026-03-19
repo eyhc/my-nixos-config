@@ -77,8 +77,13 @@
     probe-rs-tools
 
     # kicad - fritzing
-    kicad
+    kicad-small
     fritzing
+    
+    # Arduino
+    arduino
+    arduino-ide
+    arduino-cli
   ];
   
   services.udev = {
