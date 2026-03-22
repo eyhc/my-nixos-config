@@ -1,6 +1,11 @@
 { config, lib, pkgs, ... }:
 
 {
+  home.shellAliases = {
+    "..." = "cd ../..";
+    open = "xdg-open";
+  };
+
   programs = {
     readline = {
       enable = true;
@@ -9,7 +14,7 @@
         "\\e[B" = "history-search-forward";
       };
     };
-    
+
     bash = {
       enable = true;
       historySize = 50000;
@@ -47,15 +52,16 @@
         
         export PATH=$HOME/.npm/bin:$PATH
       '';
+
       shellOptions = [
   	    "histappend"
   	    "extglob"
   	    "globstar"
   	    "checkjobs"
   	    "checkwinsize"
-	  ];
+	    ];
     };
-    
+
     terminator = {
       enable = true;
       config = {

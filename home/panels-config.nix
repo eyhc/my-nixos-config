@@ -3,6 +3,11 @@
 {
   xfconf.settings = {
     
+    # Number of workspaces
+    xfwm4 = {
+      "general/workspace_count" = 2;
+    };
+
     xfce4-panel = let 
       mkUint = v: { type = "uint"; value = v; };
       uintZero = mkUint 0;
@@ -24,7 +29,7 @@
       "panels/panel-1/position-locked" = true;
       "panels/panel-1/size" = mkUint 24;
       "panels/panel-1/plugin-ids" = [
-        1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+        1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17
       ];      
       # ----
       "plugins/plugin-1" = "whiskermenu";
@@ -75,35 +80,37 @@
       "plugins/plugin-5/timeout" = mkUint 500;
       "plugins/plugin-5/timeout-seconds" = mkUint 1;
       "plugins/plugin-5/uptime/enabled" = false;
-      # ----
-      "plugins/plugin-6" = "separator";
-      "plugins/plugin-6/style" = uintZero;
-      # ----
-      "plugins/plugin-7" = "pager";
-      "plugins/plugin-7/rows" = mkUint 1;
-      "plugins/plugin-7/miniature-view" = true;
-      "plugins/plugin-7/wrap-workspaces" = false;
-      "plugins/plugin-7/workspace-scrolling" = true;
+      "plugins/plugin-6" = "fsguard";
+      "plugins/plugin-7" = "fsguard";
       # ----
       "plugins/plugin-8" = "separator";
       "plugins/plugin-8/style" = uintZero;
       # ----
-      "plugins/plugin-9" = "pulseaudio";
-      "plugins/plugin-9/enable-keyboard-shortcuts" = true;
-      "plugins/plugin-10" = "notification-plugin";
-      "plugins/plugin-11" = "xfce4-clipman-plugin";
-      "plugins/plugin-12" = "systray";
-      "plugins/plugin-12/square-icons" = false;
-      "plugins/plugin-12/menu-is-primary" = true;
-      "plugins/plugin-13" = "power-manager-plugin";
+      "plugins/plugin-9" = "pager";
+      "plugins/plugin-9/rows" = mkUint 1;
+      "plugins/plugin-9/miniature-view" = true;
+      "plugins/plugin-9/wrap-workspaces" = false;
+      "plugins/plugin-9/workspace-scrolling" = true;
       # ----
-      "plugins/plugin-14" = "separator";
-      "plugins/plugin-14/style" = uintZero;
+      "plugins/plugin-10" = "separator";
+      "plugins/plugin-10/style" = uintZero;
       # ----
-      "plugins/plugin-15" = "actions";
-      "plugins/plugin-15/button-title" = uintZero;
-      "plugins/plugin-15/appearance" = uintZero;
-      "plugins/plugin-15/items" = [
+      "plugins/plugin-11" = "pulseaudio";
+      "plugins/plugin-11/enable-keyboard-shortcuts" = true;
+      "plugins/plugin-12" = "notification-plugin";
+      "plugins/plugin-13" = "xfce4-clipman-plugin";
+      "plugins/plugin-14" = "systray";
+      "plugins/plugin-14/square-icons" = false;
+      "plugins/plugin-14/menu-is-primary" = true;
+      "plugins/plugin-15" = "power-manager-plugin";
+      # ----
+      "plugins/plugin-16" = "separator";
+      "plugins/plugin-16/style" = uintZero;
+      # ----
+      "plugins/plugin-17" = "actions";
+      "plugins/plugin-17/button-title" = uintZero;
+      "plugins/plugin-17/appearance" = uintZero;
+      "plugins/plugin-17/items" = [
         "+lock-screen"
         "-switch-user"
         "+suspend"
@@ -163,28 +170,48 @@
     };
     
   };
+
+  ## FSGUARD Config
+  xdg.configFile."xfce4/panel/fsguard-6.rc".text = ''
+    yellow=10
+    red=5
+    lab_size_visible=false
+    progress_bar_visible=true
+    hide_button=false
+    label=root
+    label_visible=true
+    mnt=/
+  '';
+  xdg.configFile."xfce4/panel/fsguard-7.rc".text = ''
+    yellow=20
+    red=10
+    lab_size_visible=false
+    progress_bar_visible=true
+    hide_button=false
+    label=home
+    label_visible=true
+    mnt=/home
+  '';
+
   
   ## DOCKLIKE Config
-  xdg.configFile."xfce4/panel/docklike-20.rc" = {
-    force = true;
-    text = ''
-      [user]
-      noWindowsListIfSingle=true
-      indicatorStyle=2
-      inactiveIndicatorStyle=2
-      indicatorOrientation=0
-      onlyDisplayVisible=true
-      onlyDisplayScreen=false
-      showPreviews=false
-      showWindowCount=false
-      indicatorColorFromTheme=false
-      inactiveColor=rgb(255,120,0)
-      indicatorColor=rgb(64,191,168)
-      pinned=firefox;thunar;terminator;writer;calc;impress;thunderbird;code;texmaker;featherpad;galculator;xfce4-screenshooter;org.keepassxc.KeePassXC;joplin;
-      forceIconSize=false
-      iconSize=38
-      keyComboActive=false
-      middleButtonBehavior=1
-    '';
-  };
+  xdg.configFile."xfce4/panel/docklike-20.rc".text = ''
+    [user]
+    noWindowsListIfSingle=true
+    indicatorStyle=2
+    inactiveIndicatorStyle=2
+    indicatorOrientation=0
+    onlyDisplayVisible=true
+    onlyDisplayScreen=false
+    showPreviews=false
+    showWindowCount=false
+    indicatorColorFromTheme=false
+    inactiveColor=rgb(255,120,0)
+    indicatorColor=rgb(64,191,168)
+    pinned=firefox;thunar;terminator;writer;calc;impress;thunderbird;code;texmaker;featherpad;galculator;xfce4-screenshooter;org.keepassxc.KeePassXC;joplin;
+    forceIconSize=false
+    iconSize=38
+    keyComboActive=false
+    middleButtonBehavior=1
+  '';
 }

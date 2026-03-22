@@ -45,6 +45,9 @@
     xfce.xfce4-timer-plugin
     xfce.xfce4-systemload-plugin
     xfce.xfce4-clipman-plugin
+    xfce.xfce4-mailwatch-plugin
+    xfce.xfce4-xkb-plugin
+    xfce.xfce4-fsguard-plugin
   ];
 
   services.displayManager.defaultSession = "xfce";
