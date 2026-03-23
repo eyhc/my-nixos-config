@@ -21,7 +21,7 @@ in {
     ./home/nextcloud-joplin-config.nix
     ./home/internet-config.nix
     ./home/vscode-config.nix
-    ./home/git-ssh-config.nix
+    ./home/dev-config.nix
     ./home/mime-apps-config.nix
   ];
   
