@@ -22,6 +22,7 @@ in {
     ./home/internet-config.nix
     ./home/vscode-config.nix
     ./home/git-ssh-config.nix
+    ./home/mime-apps-config.nix
   ];
   
   age.identityPaths = [ "/home/${user}/my-nixos-config/secrets/age.key" ];
