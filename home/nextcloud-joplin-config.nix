@@ -22,7 +22,7 @@ in {
     };
   };
 
-  age.secrets.joplin.file = ../secrets/nextcloud.pass.age;
+  age.secrets.joplin.file = ../secrets/joplin.pass.age;
 
   home.activation.joplinConfig = lib.hm.dag.entryAfter [ "reloadSystemd" ] ''
     if [ ! -d "${joplinConfigPath}" ]; then
