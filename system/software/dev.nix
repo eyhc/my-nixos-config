@@ -1,6 +1,13 @@
 { pkgs, lib, ... }:
 
-{
+let
+  android = pkgs.androidenv.composeAndroidPackages {
+    buildToolsVersions = [ "36.0.0" "35.0.0" "28.0.3" ];
+    platformVersions = [ "36" "35" "28" ];
+    ndkVersions = [ "28.2.13676358" ];
+    abiVersions = [ "armeabi-v7a" "arm64-v8a" ];
+  };
+in {
   environment.systemPackages = with pkgs; [
     # C / C++ / EMBEDDED
     cmake
@@ -8,7 +15,6 @@
     gcc
     gdb
     gnumake
-    llvmPackages_20.clang-unwrapped
     valgrind
     coreboot-toolchain.riscv
     cpplint
@@ -18,6 +24,14 @@
     minicom
     picocom
     tio
+
+    clang
+    ninja
+    pkg-config
+    gtk3
+    glib
+    libx11
+    stdenv.cc
     
     # Python   
     (python3.withPackages (python-pkgs: with python-pkgs; [
@@ -49,9 +63,8 @@
     ]))
     
     # Java
-    javaPackages.compiler.openjdk21
+    jdk
     maven
-    gradle
     
     # WEB
     bruno
@@ -84,8 +97,28 @@
     arduino
     arduino-ide
     arduino-cli
+    
+    # Android
+    android.androidsdk
+    scrcpy
+    
+    # Dart - Flutter
+    #dart
+    flutter
+    virtualgl
+    mesa
   ];
   
+  nixpkgs.config.android_sdk.accept_license = true;
+  
+  environment.variables = {
+    ANDROID_SDK_ROOT = "${android.androidsdk}/libexec/android-sdk";
+    ANDROID_HOME = "${android.androidsdk}/libexec/android-sdk";
+    JAVA_HOME = "${pkgs.jdk.home}";
+    CHROME_EXECUTABLE = "${pkgs.ungoogled-chromium}/bin/chromium";
+    GRADLE_OPTS = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${androidSdk}/libexec/android-sdk/build-tools/28.0.3/aapt2";
+  };
+
   services.udev = {
     enable = true;
     packages = with pkgs; [

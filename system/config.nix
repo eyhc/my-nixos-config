@@ -23,8 +23,8 @@
         description = "Elie Carrot";
         isNormalUser = true;
         hashedPasswordFile = config.age.secrets.ecarrotpass.path;
-        extraGroups = [ 
-          "networkmanager" "wheel" "docker" "vboxusers" "vboxsf" "dialout" "scanner"
+        extraGroups = [
+          "networkmanager" "wheel" "docker" "vboxusers" "vboxsf" "dialout" "scanner" "adbusers"
         ];
       };
     };

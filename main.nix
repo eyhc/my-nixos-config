@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  age.identityPaths = [ "/home/martin/my-nixos-config/secrets/age.key" ];
+  age.identityPaths = [ "/home/ecarrot/my-nixos-config/secrets/age.key" ];
 
   imports = [
     # agenix module
@@ -31,6 +31,19 @@
 
   # Unfree software exceptions
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "veracrypt" "geogebra" "vscode"
+    "veracrypt"
+    "geogebra"
+    "vscode"
+    "platform-tools"
+    "android-sdk-cmdline-tools"
+    "android-sdk-platform-tools"
+    "android-sdk-build-tools"
+    "android-sdk-tools"
+    "tools"
+    "build-tools"
+    "android-sdk-platforms"
+    "platforms"
+    "cmake"
+    "cmdline-tools"
   ];
 }
