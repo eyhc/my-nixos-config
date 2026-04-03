@@ -2,6 +2,7 @@
 
 {
   home.shellAliases = {
+    ".." = "cd ..";
     "..." = "cd ../..";
     open = "xdg-open";
   };

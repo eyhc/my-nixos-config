@@ -10,5 +10,6 @@
     obs-studio
     pavucontrol
     vlc
+    ffmpeg_7-full
   ];
 }
