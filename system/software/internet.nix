@@ -5,7 +5,6 @@
     #discord
     filezilla
     firefox
-    mattermost
     openconnect
     thunderbird
     tor

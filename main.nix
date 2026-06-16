@@ -34,16 +34,5 @@
     "veracrypt"
     "geogebra"
     "vscode"
-    "platform-tools"
-    "android-sdk-cmdline-tools"
-    "android-sdk-platform-tools"
-    "android-sdk-build-tools"
-    "android-sdk-tools"
-    "tools"
-    "build-tools"
-    "android-sdk-platforms"
-    "platforms"
-    "cmake"
-    "cmdline-tools"
   ];
 }
