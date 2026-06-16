@@ -44,14 +44,15 @@
         function git_prompt {
           local git_prefix=""
           local git_suffix=""
-          [[ $(git branch 2> /dev/null) ]] && git_prefix=' (' && git_suffix=')'
+          [[ $(git branch 2> /dev/null) ]] && git_prefix='(' && git_suffix=')'
           echo "$git_prefix$(parse_git_branch)$git_suffix"
         }
         
-        current_time='\D{%H:%M:%S}'
-        PS1="$YELLOW<$current_time> $RED\u$nc@$PURPLE\H$nc:$GREEN\w$YELLOW\$(git_prompt)$nc $YELLOW\$$nc "
+        PS1="$RED\u$nc@$YELLOW\H$nc:$GREEN\w$YELLOW\$(git_prompt)$nc$YELLOW\$$nc "
         
         export PATH=$HOME/.npm/bin:$PATH
+
+        [ -z "$TMUX"  ] && { exec tmux new-session && exit; }
       '';
 
       shellOptions = [
@@ -63,12 +64,39 @@
 	    ];
     };
 
-    terminator = {
+    tmux = {
       enable = true;
-      config = {
-        profiles.default.font = "Monospace 10";
-        profiles.default.use_system_font = false;
-      };
+      clock24 = true;
+      prefix = "C-a";
+      extraConfig = ''
+        unbind-key -n S-Up
+        unbind-key -n S-Down
+        unbind-key -n S-Left
+        unbind-key -n S-Right
+        unbind-key -n M-S-Up
+        unbind-key -n M-S-Down
+        unbind-key -n M-S-Left
+        unbind-key -n M-S-Right
+        unbind-key -n C-Up
+        unbind-key -n C-Down
+        unbind-key -n C-Left
+        unbind-key -n C-Right
+        unbind s
+
+        bind-key -n S-Up select-pane -U
+        bind-key -n S-Down select-pane -D
+        bind-key -n S-Left select-pane -L
+        bind-key -n S-Right select-pane -R
+        bind-key -n M-S-Up resize-pane -U
+        bind-key -n M-S-Down resize-pane -D
+        bind-key -n M-S-Left resize-pane -L
+        bind-key -n M-S-Right resize-pane -R
+        bind-key -n C-Left previous-window
+        bind-key -n C-Right next-window
+        bind-key -n C-Up switch-client -p
+        bind-key -n C-Down switch-client -n
+        bind-key s copy-mode
+      '';
     };
   };
 }

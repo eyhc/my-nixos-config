@@ -83,5 +83,11 @@
       "lock/enabled" = true;
       "lock/saver-activation/delay" = 1;
     };
+
+    # TERMINAL
+    xcfe4-terminal = {
+      "font-name" = "Monospace 9";
+      "misc-menubar-default" = false;
+    };
   };
 }

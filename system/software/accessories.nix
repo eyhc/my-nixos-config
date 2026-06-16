@@ -28,13 +28,15 @@
     remmina
     rustdesk-flutter
     stellarium
-    terminator
+    tmux
+    testdisk
     veracrypt
     xfce.orage
     xfce.xfburn
     zip
     unzip
     usbutils
+    wget
     (pkgs.callPackage 
       "${builtins.fetchTarball 
         "https://github.com/ryantm/agenix/archive/main.tar.gz"}/pkgs/agenix.nix" {})

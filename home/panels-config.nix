@@ -172,46 +172,55 @@
   };
 
   ## FSGUARD Config
-  xdg.configFile."xfce4/panel/fsguard-6.rc".text = ''
-    yellow=10
-    red=5
-    lab_size_visible=false
-    progress_bar_visible=true
-    hide_button=false
-    label=root
-    label_visible=true
-    mnt=/
-  '';
-  xdg.configFile."xfce4/panel/fsguard-7.rc".text = ''
-    yellow=20
-    red=10
-    lab_size_visible=false
-    progress_bar_visible=true
-    hide_button=false
-    label=home
-    label_visible=true
-    mnt=/home
-  '';
+  xdg.configFile."xfce4/panel/fsguard-6.rc"= {
+    force = true;
+    text = ''
+      yellow=10
+      red=5
+      lab_size_visible=false
+      progress_bar_visible=true
+      hide_button=false
+      label=root
+      label_visible=true
+      mnt=/
+    '';
+  };
 
+  xdg.configFile."xfce4/panel/fsguard-7.rc" = {
+    force = true;
+    text = ''
+      yellow=20
+      red=10
+      lab_size_visible=false
+      progress_bar_visible=true
+      hide_button=false
+      label=home
+      label_visible=true
+      mnt=/home
+    '';
+  };
   
   ## DOCKLIKE Config
-  xdg.configFile."xfce4/panel/docklike-20.rc".text = ''
-    [user]
-    noWindowsListIfSingle=true
-    indicatorStyle=2
-    inactiveIndicatorStyle=2
-    indicatorOrientation=0
-    onlyDisplayVisible=true
-    onlyDisplayScreen=false
-    showPreviews=false
-    showWindowCount=false
-    indicatorColorFromTheme=false
-    inactiveColor=rgb(255,120,0)
-    indicatorColor=rgb(64,191,168)
-    pinned=firefox;thunar;terminator;writer;calc;impress;thunderbird;code;texmaker;featherpad;galculator;xfce4-screenshooter;org.keepassxc.KeePassXC;joplin;
-    forceIconSize=false
-    iconSize=38
-    keyComboActive=false
-    middleButtonBehavior=1
-  '';
+  xdg.configFile."xfce4/panel/docklike-20.rc" = {
+    force = true;
+    text= ''
+      [user]
+      noWindowsListIfSingle=true
+      indicatorStyle=2
+      inactiveIndicatorStyle=2
+      indicatorOrientation=0
+      onlyDisplayVisible=true
+      onlyDisplayScreen=false
+      showPreviews=false
+      showWindowCount=false
+      indicatorColorFromTheme=false
+      inactiveColor=rgb(255,120,0)
+      indicatorColor=rgb(64,191,168)
+      pinned=firefox;thunar;xfce4-terminal;writer;calc;impress;thunderbird;code;texmaker;featherpad;galculator;xfce4-screenshooter;org.keepassxc.KeePassXC;joplin;
+      forceIconSize=false
+      iconSize=38
+      keyComboActive=false
+      middleButtonBehavior=1
+    '';
+  };
 }

@@ -97,11 +97,11 @@ in {
       <?xml version="1.0" encoding="UTF-8"?>
       <actions>
         <action>
-          <icon>terminator</icon>
-          <name>Open Terminator Here</name>
+          <icon>terminal</icon>
+          <name>Open Terminal Here</name>
           <submenu></submenu>
           <unique-id>1388590880939619-1</unique-id>
-          <command>terminator --working-directory %f</command>
+          <command>xfce4-terminal --working-directory %f</command>
           <description>Launch terminal emulator here</description>
           <range></range>
           <patterns>*</patterns>
