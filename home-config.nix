@@ -7,9 +7,9 @@ in {
   home = {
     username = user;
     homeDirectory = "/home/${config.home.username}";
-    stateVersion = "25.11";
+    stateVersion = "26.05";
   };
-  
+
   imports = [
     "${builtins.fetchTarball 
       "https://github.com/ryantm/agenix/archive/main.tar.gz"}/modules/age-home.nix"
@@ -24,9 +24,9 @@ in {
     ./home/dev-config.nix
     ./home/mime-apps-config.nix
   ];
-  
+
   age.identityPaths = [ "/home/${user}/my-nixos-config/secrets/age.key" ];
-  
+
   nixpkgs.overlays = [
     (self: super: { nur = nur-pkgs; })
   ];

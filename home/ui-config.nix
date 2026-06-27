@@ -45,7 +45,7 @@
     # WALLPAPER
     xfce4-desktop =
     let
-      image = "${pkgs.xfce.xfdesktop}/share/backgrounds/xfce/xfce-shapes.svg";
+      image = "${pkgs.xfdesktop}/share/backgrounds/xfce/xfce-shapes.svg";
     in {
       "backdrop/screen0/monitorVirtual-1/workspace0/last-image" = image;  
       "backdrop/screen0/monitoreDP-1/workspace0/last-image" = image;
@@ -62,7 +62,7 @@
       "desktop-icons/file-icons/show-filesystem" = true;
       "desktop-icons/file-icons/show-trash" = true;
     };
-    
+
     # THUNAR
     thunar = {
       "last-icon-view-zoom-level" = "THUNAR_ZOOM_LEVEL_75_PERCENT";

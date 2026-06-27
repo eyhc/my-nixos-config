@@ -13,10 +13,7 @@ in {
       github.copilot-chat
 
       # DATA/CONFIG LANGUAGES
-      mechatroner.rainbow-csv
-      redhat.vscode-xml
       redhat.vscode-yaml
-      tamasfe.even-better-toml
       zainchen.json
 
       # MARKDOWN/PDF
@@ -28,49 +25,22 @@ in {
       ms-vscode.cpptools
       ms-vscode.cpptools-extension-pack
       ms-vscode.hexeditor
-      ms-vscode.makefile-tools
       (extFromMarketplace "cpplint" "mine" "0.1.3" "sha256-pptjbCdgn9oh/TrEEaX4oqU9JbdKx/A8q9D1XZXbh20=")
 
       # PYTHON / JUPYTER
-      ms-pyright.pyright
-      ms-python.pylint
-      ms-python.mypy-type-checker
       ms-python.python
-      ms-python.debugpy
-      ms-python.vscode-pylance
-      ms-toolsai.jupyter
 
       # DART / FLUTTER
-      dart-code.dart-code
-      dart-code.flutter
+      #dart-code.dart-code
+      #dart-code.flutter
 
       # RUST
       rust-lang.rust-analyzer
       
       # JAVA
-      vscjava.vscode-java-debug
-      vscjava.vscode-java-dependency
-      vscjava.vscode-java-test
       vscjava.vscode-java-pack
       vscjava.vscode-maven
-
-      # NIX
-      bbenoist.nix
-
-      # GO
-      golang.go
-
-      # NODE / JS / TS
-      angular.ng-template
-      #ionic.ionic
-
-      # OCAML
-      ocamllabs.ocaml-platform
-
-      # EMBEDDED
-      zhwu95.riscv
-      #marus25.cortex-debug
-      platformio.platformio-vscode-ide
+      redhat.java
 
       # SPELL CHECKER
       streetsidesoftware.code-spell-checker-french
@@ -80,31 +50,21 @@ in {
       ms-vscode-remote.remote-ssh
       ms-vscode.remote-explorer
       ms-vscode-remote.remote-containers
-      docker.docker
-      ms-vsliveshare.vsliveshare
 
       # GIT / GITHUB / GITLAB
       mhutchie.git-graph
-      github.github-vscode-theme
-      github.vscode-github-actions
       github.vscode-pull-request-github
       gitlab.gitlab-workflow
 
       # DIAGRAMS
-      jebbs.plantuml
       hediet.vscode-drawio
-      bierner.markdown-mermaid
-
-      # LATEX
-      james-yu.latex-workshop
+      (extFromMarketplace "vscode-mermaid-chart" "MermaidChart" "2.7.1" "sha256-ONk8K6S/q9I1o0oOaZTgUyMhHmZcXQ6dZN13Bgv0Oag=")
 
       # OTHERS
+      editorconfig.editorconfig
       ms-vscode.anycode
       gruntfuggly.todo-tree
-      mikestead.dotenv
       vitaliymaz.vscode-svg-previewer
-      (extFromMarketplace "free-sqlite" "free-sqlite" "0.6.20"  "sha256-JEuvVaoFTN/U5LpVaDPZjfQnCGbMItzQhhEmtSB7IGQ=")
-      (extFromMarketplace "doxdocgen" "cschlosser" "1.4.0"  "sha256-InEfF1X7AgtsV47h8WWq5DZh6k/wxYhl2r/pLZz9JbU=")
     ];
   };
 
@@ -132,18 +92,18 @@ in {
       "github.copilot.enable" = { "*" = false; };
       "editor.aiStats.enabled" = true;
 
-      "workbench.colorTheme" = "GitHub Dark Default";
+      #"workbench.colorTheme" = "GitHub Dark Default";
       "notebook.insertFinalNewline" = true;
 
       # SPELL CHECKER
-      "cSpell.checkLimit" = 1024;
-      "cSpell.maxNumberOfProblems" = 512;
+      "cSpell.checkLimit" = 2048;
+      "cSpell.maxNumberOfProblems" = 1024;
       "cSpell.language" = "en,fr";
       "cSpell.enabledFileTypes" = {
         "latex" = true;
         "plaintext" = true;
-        "*" = false;
         "tex" = true;
+        "*" = false;
       };
 
       # cpplint

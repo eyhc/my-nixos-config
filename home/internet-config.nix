@@ -110,6 +110,7 @@
               { name = "Deepl"; url = "https://www.deepl.com/en/translator"; }
               { name = "Géoportail"; url = "https://www.geoportail.gouv.fr/"; }
               { name = "MF"; url = "https://meteofrance.com/"; }
+              { name = "France.tv"; url = "https://france.tv/"; }
               {
                 name = "NixOS";
                 bookmarks = [
