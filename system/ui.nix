@@ -29,7 +29,7 @@
     ];
   };
 
-  environment.xfce.excludePackages = with pkgs.xfce; [
+  environment.xfce.excludePackages = with pkgs; [
     mousepad
     parole
     xfce4-appfinder
@@ -37,17 +37,16 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    home-manager
-    xfce.xfce4-whiskermenu-plugin
-    xfce.xfce4-docklike-plugin
-    xfce.xfce4-battery-plugin
-    xfce.xfce4-power-manager
-    xfce.xfce4-timer-plugin
-    xfce.xfce4-systemload-plugin
-    xfce.xfce4-clipman-plugin
-    xfce.xfce4-mailwatch-plugin
-    xfce.xfce4-xkb-plugin
-    xfce.xfce4-fsguard-plugin
+    xfce4-whiskermenu-plugin
+    xfce4-docklike-plugin
+    xfce4-battery-plugin
+    xfce4-power-manager
+    xfce4-timer-plugin
+    xfce4-systemload-plugin
+    xfce4-clipman-plugin
+    xfce4-mailwatch-plugin
+    xfce4-xkb-plugin
+    xfce4-fsguard-plugin
   ];
 
   services.displayManager.defaultSession = "xfce";

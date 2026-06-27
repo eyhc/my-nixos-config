@@ -18,7 +18,7 @@
         hashedPasswordFile = config.age.secrets.guestpass.path;
         extraGroups = [ "networkmanager" ];
       };
-      
+
       ecarrot = {
         description = "Elie Carrot";
         isNormalUser = true;
@@ -86,4 +86,11 @@
   };
   services.geoclue2.enable = true;
   location.provider = "geoclue2";
+
+  system.autoUpgrade = {
+    enable = true;
+    allowReboot = true;
+  };
+
+  system.stateVersion = "26.05";
 }

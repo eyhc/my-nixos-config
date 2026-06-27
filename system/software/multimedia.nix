@@ -5,7 +5,6 @@
     audacity
     cheese
     handbrake
-    helvum
     mplayer
     obs-studio
     pavucontrol

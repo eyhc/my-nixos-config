@@ -5,11 +5,11 @@
     #discord
     filezilla
     firefox
-    openconnect
+    #openconnect
     thunderbird
     tor
     tor-browser
-    transmission_4-gtk
+    #transmission_4-gtk
     ungoogled-chromium
   ];
 

@@ -62,10 +62,9 @@ Adapt `secrets` directory for your own needs and make sure to update the
 
 
 2. Modify the `/etc/nixos/configuration.nix` file by removing all lines except 
-   the import and the `system.stateVersion` lines. Then, add the `main.nix` file
-   into the imports list.
+   the import lines. Then, add the `main.nix` file into the imports list.
 
-   At the end, it should look like this:
+   At the end, it must look like this:
 
    ```nix
    { config, pkgs, ... }:
@@ -75,8 +74,6 @@ Adapt `secrets` directory for your own needs and make sure to update the
          ./hardware-configuration.nix
          /home/martin/my-nixos-config/main.nix   # ADAPT HERE !!!
       ];
-
-   system.stateVersion = "25.11"; # Did you read the comment?
    }
    ```
 

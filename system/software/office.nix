@@ -4,7 +4,7 @@
   environment.systemPackages = with pkgs; [
     foliate
     libreoffice
-    mate.atril
+    atril
     miktex
     pdfarranger
     texmaker

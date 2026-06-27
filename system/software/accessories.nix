@@ -4,12 +4,12 @@
   environment.systemPackages = with pkgs; [
     age
     backintime
-    mate.engrampa
+    engrampa
     featherpad
+    fzf
     galculator
     geoclue2
     geogebra6
-    kdePackages.ghostwriter
     giac-with-xcas
     gnome-font-viewer
     gnome-keyring
@@ -22,17 +22,16 @@
     jq
     keepassxc
     lsof
+    micro
     nextcloud-client
+    orage
     pandoc
     redshift
-    remmina
-    rustdesk-flutter
     stellarium
-    tmux
     testdisk
+    tmux
     veracrypt
-    xfce.orage
-    xfce.xfburn
+    xfburn
     zip
     unzip
     usbutils
@@ -41,16 +40,16 @@
       "${builtins.fetchTarball 
         "https://github.com/ryantm/agenix/archive/main.tar.gz"}/pkgs/agenix.nix" {})
   ];
-  
+
   programs.thunar = {
     enable = true;
-    plugins = with pkgs.xfce; [
+    plugins = with pkgs; [
       thunar-archive-plugin
       thunar-media-tags-plugin
       thunar-volman
     ];
   };
-  
+
   programs.gnupg = {
     agent.enable = true;
     agent.enableSSHSupport = true;
