@@ -85,8 +85,8 @@
     };
 
     # TERMINAL
-    xcfe4-terminal = {
-      "font-name" = "Monospace 9";
+    xfce4-terminal = {
+      "font-name" = "Monospace 10";
       "misc-menubar-default" = false;
     };
   };

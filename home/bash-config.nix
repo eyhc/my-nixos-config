@@ -21,36 +21,103 @@
       historySize = 50000;
       historyControl = [ "ignoreboth" ];
       initExtra = ''
+        black='\[\e[0;30m\]'
+        BLACK='\[\e[1;30m\]'
         red='\[\e[0;31m\]'
         RED='\[\e[1;31m\]'
-        blue='\[\e[0;34m\]'
-        BLUE='\[\e[1;34m\]'
-        cyan='\[\e[0;36m\]'
-        CYAN='\[\e[1;36m\]'
         green='\[\e[0;32m\]'
         GREEN='\[\e[1;32m\]'
-        yellow='\[\e[0;33m\]'
-        YELLOW='\[\e[1;33m\]'
-        PURPLE='\[\e[1;35m\]'
+        olive='\[\e[0;33m\]'
+        OLIVE='\[\e[1;33m\]'
+        navy='\[\e[0;34m\]'
+        NAVY='\[\e[1;34m\]'
         purple='\[\e[0;35m\]'
+        PURPLE='\[\e[1;35m\]'
+        teal='\[\e[0;36m\]'
+        TEAL='\[\e[1;36m\]'
+        silver='\[\e[0;37m\]'
+        SILVER='\[\e[1;37m\]'
         nc='\[\e[0m\]'
-        
+
+        bright_fg_prefix=9 bright_bg_prefix=10
+        gray='\[\e[0;'"$bright_fg_prefix"'0m\]'
+        GRAY='\[\e['"$bright_fg_prefix"'0;1m\]'
+        red='\[\e[0;'"$bright_fg_prefix"'1m\]'
+        RED='\[\e['"$bright_fg_prefix"'1;1m\]'
+        lime='\[\e[0;'"$bright_fg_prefix"'2m\]'
+        LIME='\[\e['"$bright_fg_prefix"'2;1m\]'
+        yellow='\[\e[0;'"$bright_fg_prefix"'3m\]'
+        YELLOW='\[\e['"$bright_fg_prefix"'3;1m\]'
+        blue='\[\e[0;'"$bright_fg_prefix"'4m\]'
+        BLUE='\[\e['"$bright_fg_prefix"'4;1m\]'
+        magenta='\[\e[0;'"$bright_fg_prefix"'5m\]'
+        MAGENTA='\[\e['"$bright_fg_prefix"'5;1m\]'
+        cyan='\[\e[0;'"$bright_fg_prefix"'6m\]'
+        CYAN='\[\e['"$bright_fg_prefix"'6;1m\]'
+        white='\[\e[0;'"$bright_fg_prefix"'7m\]'
+        WHITE='\[\e['"$bright_fg_prefix"'7;1m\]'
+
+        # show chroot if exist
+        function chroot_prefix {
+          if [[ $debian_chroot ]]; then echo "("; else echo ""; fi
+        }
+        function chroot_suffix {
+          if [[ $debian_chroot ]]; then echo ")"; else echo ""; fi
+        }
+        function chroot_name {
+          if [[ $debian_chroot ]]; then echo $debian_chroot; else echo ""; fi
+        }
+        function chroot {
+          echo "\$(chroot_prefix)$TEAL\$(chroot_name)$nc\$(chroot_suffix)"
+        }
+
+        export VIRTUAL_ENV_DISABLE_PROMPT=1
+        function ve_prefix {
+          if [[ $VIRTUAL_ENV ]]; then echo "("; else echo ""; fi
+        }
+        function ve_suffix {
+          if [[ $VIRTUAL_ENV ]]; then echo ")"; else echo ""; fi
+        }
+        function ve_prompt {
+          echo $(basename "$VIRTUAL_ENV")
+        }
+        function my_ve {
+            echo "\$(ve_prefix)$PURPLE\$(ve_prompt)$nc\$(ve_suffix)"
+        }
+
         function parse_git_dirty {
           [[ $(git status 2> /dev/null | tail -n1 | cut -c 1-17) != "nothing to commit" ]] && printf "*\n"
         }
         function parse_git_branch {
           git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
         }
-        function git_prompt {
-          local git_prefix=""
-          local git_suffix=""
-          [[ $(git branch 2> /dev/null) ]] && git_prefix='(' && git_suffix=')'
-          echo "$git_prefix$(parse_git_branch)$git_suffix"
+        function git_prefix {
+          if [[ $(git branch 2> /dev/null) ]]; then echo "["; else echo ""; fi
         }
-        
-        PS1="$RED\u$nc@$YELLOW\H$nc:$GREEN\w$YELLOW\$(git_prompt)$nc$YELLOW\$$nc "
-        
+        function git_suffix {
+          if [[ $(git branch 2> /dev/null) ]]; then echo "]"; else echo ""; fi
+        }
+        function git_prompt {
+          echo "\$(git_prefix)$olive\$(parse_git_branch)$nc\$(git_suffix)"
+        }
+
+        my_ps_host="$green\h$nc"
+        my_ps_host_root="$green\h$nc"
+        my_ps_user="$GREEN\u$nc"
+        my_ps_root="$BROWN\u$nc"
+
+        case $(id -u) in
+        0) PS1="┌─$(my_ve)$(chroot)[$my_ps_root][$my_ps_host_root]$(git_prompt)[$teal\w$nc]
+        └─▪ "
+          ;;
+        *) PS1="┌─$(my_ve)$(chroot)[$my_ps_user][$my_ps_host]$(git_prompt)[$teal\w$nc]
+        └─▪ "
+          ;;
+        esac
+
         export PATH=$HOME/.npm/bin:$PATH
+
+        eval "$(fzf --bash)"
 
         [ -z "$TMUX"  ] && { exec tmux new-session && exit; }
       '';
@@ -69,33 +136,45 @@
       clock24 = true;
       prefix = "C-a";
       extraConfig = ''
+        set -g display-panes-time 1000
+
         unbind-key -n S-Up
         unbind-key -n S-Down
         unbind-key -n S-Left
         unbind-key -n S-Right
-        unbind-key -n M-S-Up
-        unbind-key -n M-S-Down
-        unbind-key -n M-S-Left
-        unbind-key -n M-S-Right
-        unbind-key -n C-Up
-        unbind-key -n C-Down
-        unbind-key -n C-Left
-        unbind-key -n C-Right
-        unbind s
+        unbind-key -n C-S-Up
+        unbind-key -n C-S-Down
+        unbind-key -n C-S-Left
+        unbind-key -n C-S-Right
+        unbind-key _
+        unbind-key !
+        unbind-key n
+        unbind-key p
+        unbind-key N
+        unbind-key P
+        unbind-key s
+        unbind-key r
+        unbind-key R
+        unbind-key i
 
         bind-key -n S-Up select-pane -U
         bind-key -n S-Down select-pane -D
         bind-key -n S-Left select-pane -L
         bind-key -n S-Right select-pane -R
-        bind-key -n M-S-Up resize-pane -U
-        bind-key -n M-S-Down resize-pane -D
-        bind-key -n M-S-Left resize-pane -L
-        bind-key -n M-S-Right resize-pane -R
-        bind-key -n C-Left previous-window
-        bind-key -n C-Right next-window
-        bind-key -n C-Up switch-client -p
-        bind-key -n C-Down switch-client -n
+        bind-key -n C-S-Up resize-pane -U
+        bind-key -n C-S-Down resize-pane -D
+        bind-key -n C-S-Left resize-pane -L
+        bind-key -n C-S-Right resize-pane -R
+        bind-key p previous-window
+        bind-key n next-window
+        bind-key P switch-client -p
+        bind-key N switch-client -n
+        bind-key ! split-window -h -c "#{pane_current_path}"
+        bind-key _ split-window -v -c "#{pane_current_path}"
         bind-key s copy-mode
+        bind-key r command-prompt -p "(rename-window) " "rename-window \"%%\""
+        bind-key R command-prompt -p "(rename-session) " "rename-session \"%%\""
+        bind-key i display-panes
       '';
     };
   };
