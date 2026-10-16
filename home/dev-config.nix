@@ -51,12 +51,10 @@
   # PUBLIC KEYS
   home.file.".ssh/github_id_ed25519.pub".source = ../secrets/github_id_ed25519.pub;
   home.file.".ssh/gitlab_id_ed25519.pub".source = ../secrets/gitlab_id_ed25519.pub;
-  home.file.".ssh/gricad_id_ed25519.pub".source = ../secrets/gricad_id_ed25519.pub;
 
   # PRIVATE KEYS (AGENIX)
   age.secrets.githubSSHKey.file = ../secrets/github_id_ed25519.age;
   age.secrets.gitlabSSHKey.file = ../secrets/gitlab_id_ed25519.age;
-  age.secrets.gricadSSHKey.file = ../secrets/gricad_id_ed25519.age;
 
   # SSH
   programs.ssh = {
@@ -86,12 +84,6 @@
         host = "gitlab.com";
         user = "git";
         identityFile = config.age.secrets.gitlabSSHKey.path;
-        identitiesOnly = true;
-      };
-      "gricad-gitlab.univ-grenoble-alpes.fr" = {
-        host = "gricad-gitlab.univ-grenoble-alpes.fr";
-        user = "git";
-        identityFile = config.age.secrets.gricadSSHKey.path;
         identitiesOnly = true;
       };
     };

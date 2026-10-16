@@ -160,32 +160,6 @@
   ##############################################################################
   accounts = {
     email.accounts =  {
-      uga = {
-        thunderbird.enable = true;
-        address = "elie.carrot@etu.univ-grenoble-alpes.fr";
-        flavor = "plain";
-        realName = "Elie Carrot";
-        userName = "elie.carrot@etu.univ-grenoble-alpes.fr";
-        imap = {
-          host = "webmail.renater.fr";
-          port = 993;
-          tls = {
-            enable = true;
-            useStartTls = false;
-          };
-        };
-        smtp = {
-          host = "webmail.renater.fr";
-          port = 587;
-          tls = {
-            enable = true;
-            useStartTls = true;
-          };
-        };
-
-        primary = true;
-      };
-
       laposte = {
         thunderbird.enable = true;
         address = "elie.carrot@laposte.net";
@@ -208,6 +182,8 @@
             useStartTls = false;
           };
         };
+        
+        primary = true;
       };
 
       gmail = {
@@ -222,7 +198,7 @@
   programs.thunderbird = {
     enable = true;
     profiles = {
-      uga.isDefault = true;
+      laposte.isDefault = true;
     };
   };
 
