@@ -47,7 +47,7 @@
     let
       image = "${pkgs.xfdesktop}/share/backgrounds/xfce/xfce-shapes.svg";
     in {
-      "backdrop/screen0/monitorVirtual-1/workspace0/last-image" = image;  
+      "backdrop/screen0/monitorVirtual-1/workspace0/last-image" = image;
       "backdrop/screen0/monitoreDP-1/workspace0/last-image" = image;
       "backdrop/screen0/monitorHDMI-1/workspace0/last-image" = image;
       "backdrop/screen0/monitorVirtual-1/workspace0/image-style" = 5;
@@ -86,7 +86,7 @@
 
     # TERMINAL
     xfce4-terminal = {
-      "font-name" = "Monospace 10";
+      "font-name" = "JetBrainsMono Nerd Font 10";
       "misc-menubar-default" = false;
     };
   };

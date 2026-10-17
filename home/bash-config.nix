@@ -16,108 +16,182 @@
       };
     };
 
+    fzf = {
+      enable = true;
+      tmux.enableShellIntegration = true;
+    };
+
+    starship = {
+      enable = true;
+      enableBashIntegration = true;
+      settings = {
+        "$schema" = "https://starship.rs/config-schema.json";
+        add_newline = true;
+        format = lib.concatStrings [
+          "┌─"
+          "$username"
+          "$hostname"
+          "$python"
+          "$git_branch"
+          "$git_commit"
+          "$git_metrics"
+          "$git_status"
+          "$git_state"
+          "$rust"
+          "$c"
+          "$cpp"
+          "$cmake"
+          "$dart"
+          "$java"
+          "$php"
+          "$ocaml"
+          "$meson"
+          "$nodejs"
+          "$docker_context"
+          "$container"
+          "$nix_shell"
+          "$directory"
+          "$line_break"
+          "└─"
+          "$character"
+        ];
+
+        character = {
+          success_symbol = "[■](green)";
+          error_symbol = "[■](red)";
+        };
+        username = {
+          show_always = true;
+          style_user = "bold green";
+          style_root = "bold red";
+          format = ''\[[$user]($style)\]'';
+        };
+        directory = {
+          format = ''\[[$path]($style)[$read_only]($read_only_style)\]'';
+          style = "bold 39";
+          truncate_to_repo = false;
+          truncation_length = 3;
+          truncation_symbol = "…/";
+        };
+        directory.substitutions = {
+          "Desktop" = " ";
+          "Documents" = "󱧶 ";
+          "Downloads" = "󰉍 ";
+          "Music" = "󱍙 ";
+          "Pictures" = "󰉏 ";
+          "Nextcloud" = "󰉎 ";
+        };
+        hostname = {
+          format = ''\[[$ssh_symbol$hostname]($style)\]'';
+          ssh_only = false;
+          style = "green";
+        };
+        c = {
+          format = ''\[[$symbol($version(-$name))]($style)\]'';
+          symbol = " ";
+          style = "149";
+        };
+        cpp = {
+          format = ''\[[$symbol($version(-$name))]($style)\]'';
+          symbol = " ";
+          style = "149";
+          disabled = false;
+        };
+        cmake = {
+          format = ''\[[$symbol($version)]($style)\]'';
+          symbol = " ";
+          style = "201";
+        };
+        container = {
+          symbol = " ";
+          format = ''\[[$symbol \[$name\]]($style)\]'';
+          style = "bold 45";
+        };
+        dart = {
+          symbol = " ";
+          format = ''\[[$symbol($version)]($style)\]'';
+        };
+        docker_context = {
+          symbol = " ";
+          format = ''\[[$symbol$context]($style)\]'';
+        };
+        git_branch = {
+          symbol = " ";
+          format = ''\[[$symbol$branch ]($style)'';
+          style = "yellow";
+        };
+        git_commit = {
+          format = ''[\($hash$tag\)]($style)\]'';
+          only_detached = false;
+          tag_disabled = false;
+          tag_symbol = " 󰓹 ";
+          commit_hash_length = 8;
+          style = "yellow";
+        };
+        git_status = {
+          format = ''\[[$all_status$ahead_behind]($style)\]'';
+          style = "red";
+        };
+        git_metrics = {
+          format = ''\[[+$added]($added_style)[-$deleted]($deleted_style)\]'';
+          added_style = "green";
+          deleted_style = "red";
+          disabled = false;
+          only_nonzero_diffs = true;
+        };
+        git_state = {
+          format = ''\[[$state ($progress_current/$progress_total)]($style)\]'';
+          style = "yellow";
+        };
+        java = {
+          symbol = " ";
+          format = ''\[[$symbol($version)]($style)\]'';
+          style = "red";
+        };
+        meson = {
+          symbol = "⬢ ";
+          format = ''\[[$symbol$project]($style)\]'';
+          style = "134";
+        };
+        nix_shell = {
+          symbol = " ";
+          format = ''\[[$symbol$state( \($name\))]($style)\]'';
+          style = "12";
+        };
+        nodejs = {
+          symbol = " ";
+          format = ''\[[$symbol($version)]($style)\]'';
+          style = "70";
+        };
+        ocaml = {
+          symbol = " ";
+          format = ''\[[$symbol($version)(\($switch_indicator$switch_name\))]($style)\]'';
+          style = "yellow";
+        };
+        php = {
+          symbol = " ";
+          format = ''\[[$symbol($version)]($style)\]'';
+          style = "147";
+        };
+        python = {
+          symbol = " ";
+          format = ''\[[''${symbol}''${pyenv_prefix}(''${version})(\($virtualenv\))]($style)\]'';
+          style = "220";
+        };
+        rust = {
+          symbol = " ";
+          format = ''\[[$symbol($version)]($style)\]'';
+          style = "130";
+        };
+      };
+    };
+
     bash = {
       enable = true;
       historySize = 50000;
       historyControl = [ "ignoreboth" ];
       initExtra = ''
-        black='\[\e[0;30m\]'
-        BLACK='\[\e[1;30m\]'
-        red='\[\e[0;31m\]'
-        RED='\[\e[1;31m\]'
-        green='\[\e[0;32m\]'
-        GREEN='\[\e[1;32m\]'
-        olive='\[\e[0;33m\]'
-        OLIVE='\[\e[1;33m\]'
-        navy='\[\e[0;34m\]'
-        NAVY='\[\e[1;34m\]'
-        purple='\[\e[0;35m\]'
-        PURPLE='\[\e[1;35m\]'
-        teal='\[\e[0;36m\]'
-        TEAL='\[\e[1;36m\]'
-        silver='\[\e[0;37m\]'
-        SILVER='\[\e[1;37m\]'
-        nc='\[\e[0m\]'
-
-        bright_fg_prefix=9 bright_bg_prefix=10
-        gray='\[\e[0;'"$bright_fg_prefix"'0m\]'
-        GRAY='\[\e['"$bright_fg_prefix"'0;1m\]'
-        red='\[\e[0;'"$bright_fg_prefix"'1m\]'
-        RED='\[\e['"$bright_fg_prefix"'1;1m\]'
-        lime='\[\e[0;'"$bright_fg_prefix"'2m\]'
-        LIME='\[\e['"$bright_fg_prefix"'2;1m\]'
-        yellow='\[\e[0;'"$bright_fg_prefix"'3m\]'
-        YELLOW='\[\e['"$bright_fg_prefix"'3;1m\]'
-        blue='\[\e[0;'"$bright_fg_prefix"'4m\]'
-        BLUE='\[\e['"$bright_fg_prefix"'4;1m\]'
-        magenta='\[\e[0;'"$bright_fg_prefix"'5m\]'
-        MAGENTA='\[\e['"$bright_fg_prefix"'5;1m\]'
-        cyan='\[\e[0;'"$bright_fg_prefix"'6m\]'
-        CYAN='\[\e['"$bright_fg_prefix"'6;1m\]'
-        white='\[\e[0;'"$bright_fg_prefix"'7m\]'
-        WHITE='\[\e['"$bright_fg_prefix"'7;1m\]'
-
-        # show chroot if exist
-        function chroot_prefix {
-          if [[ $debian_chroot ]]; then echo "("; else echo ""; fi
-        }
-        function chroot_suffix {
-          if [[ $debian_chroot ]]; then echo ")"; else echo ""; fi
-        }
-        function chroot_name {
-          if [[ $debian_chroot ]]; then echo $debian_chroot; else echo ""; fi
-        }
-        function chroot {
-          echo "\$(chroot_prefix)$TEAL\$(chroot_name)$nc\$(chroot_suffix)"
-        }
-
-        export VIRTUAL_ENV_DISABLE_PROMPT=1
-        function ve_prefix {
-          if [[ $VIRTUAL_ENV ]]; then echo "("; else echo ""; fi
-        }
-        function ve_suffix {
-          if [[ $VIRTUAL_ENV ]]; then echo ")"; else echo ""; fi
-        }
-        function ve_prompt {
-          echo $(basename "$VIRTUAL_ENV")
-        }
-        function my_ve {
-            echo "\$(ve_prefix)$PURPLE\$(ve_prompt)$nc\$(ve_suffix)"
-        }
-
-        function parse_git_dirty {
-          [[ $(git status 2> /dev/null | tail -n1 | cut -c 1-17) != "nothing to commit" ]] && printf "*\n"
-        }
-        function parse_git_branch {
-          git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
-        }
-        function git_prefix {
-          if [[ $(git branch 2> /dev/null) ]]; then echo "["; else echo ""; fi
-        }
-        function git_suffix {
-          if [[ $(git branch 2> /dev/null) ]]; then echo "]"; else echo ""; fi
-        }
-        function git_prompt {
-          echo "\$(git_prefix)$olive\$(parse_git_branch)$nc\$(git_suffix)"
-        }
-
-        my_ps_host="$green\h$nc"
-        my_ps_host_root="$green\h$nc"
-        my_ps_user="$GREEN\u$nc"
-        my_ps_root="$BROWN\u$nc"
-
-        case $(id -u) in
-        0) PS1="┌─$(my_ve)$(chroot)[$my_ps_root][$my_ps_host_root]$(git_prompt)[$teal\w$nc]
-        └─▪ "
-          ;;
-        *) PS1="┌─$(my_ve)$(chroot)[$my_ps_user][$my_ps_host]$(git_prompt)[$teal\w$nc]
-        └─▪ "
-          ;;
-        esac
-
         export PATH=$HOME/.npm/bin:$PATH
-
-        eval "$(fzf --bash)"
 
         [ -z "$TMUX"  ] && { exec tmux new-session && exit; }
       '';

@@ -5,14 +5,14 @@ let
     [text]
     appendEmptyLine=true
     autoBracket=true
-    font="Monospace,10,-1,5,50,0,0,0,0,0"
+    font="JetBrainsMono Nerd Font,10,-1,5,50,0,0,0,0,0"
     lineNumbers=true
     noWrap=false
     showEndings=false
     showWhiteSpace=false
     textTabSize=2
     vLineDistance=80
-      
+
     [window]
     position=@Point\(100 80\)
     size=@Size\(800 500\)
@@ -20,7 +20,7 @@ let
     hideSearchbar=true
     showCursorPos=true
   '';
-  
+
   keePassConfig = ''
     [GUI]
     ApplicationTheme=classic
@@ -28,13 +28,13 @@ let
     [Browser]
     Enabled=true
   '';
-  
+
   keePassCache = ''
     [General]
     LastActiveDatabase=/home/${config.home.username}/Nextcloud/passwords.kdbx
     LastOpenedDatabases=/home/${config.home.username}/Nextcloud/passwords.kdbx
   '';
-  
+
 in {
   ## REDSHIFT
   services.redshift = {
@@ -48,13 +48,13 @@ in {
     };
     tray = true;
   };
-  
+
   ## FEATHERPAD
   home.activation.featherPadConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     mkdir -p "${config.xdg.configHome}/featherpad"
     echo "${featherPadConfig}" > "${config.xdg.configHome}/featherpad/fp.conf"
   '';
-  
+
   ## KEEPASSXC
   home.activation.keePassConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     mkdir -p "${config.xdg.configHome}/keepassxc" "${config.xdg.cacheHome}/keepassxc"
@@ -89,7 +89,7 @@ in {
       default_notation_mode=2
     '';
   };
-  
+
   ## THUNAR
   xdg.configFile."Thunar/uca.xml" = {
     force = true;
