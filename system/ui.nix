@@ -47,6 +47,7 @@
     xfce4-mailwatch-plugin
     xfce4-xkb-plugin
     xfce4-fsguard-plugin
+    xfce4-time-out-plugin
   ];
 
   services.displayManager.defaultSession = "xfce";

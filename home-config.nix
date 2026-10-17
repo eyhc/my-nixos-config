@@ -22,7 +22,7 @@ in {
     ./home/ide-config.nix
     ./home/internet-config.nix
     ./home/extra-packages.nix
-    ./home/vscode-config.nix
+    #./home/vscode-config.nix
     ./home/dev-config.nix
     ./home/mime-apps-config.nix
   ];

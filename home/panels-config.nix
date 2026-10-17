@@ -2,20 +2,20 @@
 
 {
   xfconf.settings = {
-    
+
     # Number of workspaces
     xfwm4 = {
       "general/workspace_count" = 2;
     };
 
-    xfce4-panel = let 
+    xfce4-panel = let
       mkUint = v: { type = "uint"; value = v; };
       uintZero = mkUint 0;
     in {
       # GLOBAL
       panels = [ 1 2 ];
       "panels/dark-mode" = false;
-      
+
       ## 1ST PANEL
       "panels/panel-1/autohide-behavior" = uintZero;
       "panels/panel-1/background-style" = uintZero;
@@ -29,15 +29,15 @@
       "panels/panel-1/position-locked" = true;
       "panels/panel-1/size" = mkUint 24;
       "panels/panel-1/plugin-ids" = [
-        1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17
-      ];      
+        1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18
+      ];
       # ----
       "plugins/plugin-1" = "whiskermenu";
       "plugins/plugin-1/button-icon" = "desktop-environment-xfce";
       "plugins/plugin-1/button-title" = "Applications";
-      "plugins/plugin-1/favorites-in-recent" = false;   
+      "plugins/plugin-1/favorites-in-recent" = false;
       "plugins/plugin-1/menu-width" = 450;
-      "plugins/plugin-1/menu-height" = 500;   
+      "plugins/plugin-1/menu-height" = 500;
       "plugins/plugin-1/show-button-icon" = true;
       "plugins/plugin-1/show-button-title" = true;
       "plugins/plugin-1/show-command-logout" = true;
@@ -95,22 +95,24 @@
       "plugins/plugin-10" = "separator";
       "plugins/plugin-10/style" = uintZero;
       # ----
-      "plugins/plugin-11" = "pulseaudio";
-      "plugins/plugin-11/enable-keyboard-shortcuts" = true;
-      "plugins/plugin-12" = "notification-plugin";
-      "plugins/plugin-13" = "xfce4-clipman-plugin";
-      "plugins/plugin-14" = "systray";
-      "plugins/plugin-14/square-icons" = false;
-      "plugins/plugin-14/menu-is-primary" = true;
-      "plugins/plugin-15" = "power-manager-plugin";
+      "plugins/plugin-11" = "xfce4-time-out-plugin";
       # ----
-      "plugins/plugin-16" = "separator";
-      "plugins/plugin-16/style" = uintZero;
+      "plugins/plugin-12" = "pulseaudio";
+      "plugins/plugin-12/enable-keyboard-shortcuts" = true;
+      "plugins/plugin-13" = "notification-plugin";
+      "plugins/plugin-14" = "xfce4-clipman-plugin";
+      "plugins/plugin-15" = "systray";
+      "plugins/plugin-15/square-icons" = false;
+      "plugins/plugin-15/menu-is-primary" = true;
+      "plugins/plugin-16" = "power-manager-plugin";
       # ----
-      "plugins/plugin-17" = "actions";
-      "plugins/plugin-17/button-title" = uintZero;
-      "plugins/plugin-17/appearance" = uintZero;
-      "plugins/plugin-17/items" = [
+      "plugins/plugin-17" = "separator";
+      "plugins/plugin-17/style" = uintZero;
+      # ----
+      "plugins/plugin-18" = "actions";
+      "plugins/plugin-18/button-title" = uintZero;
+      "plugins/plugin-18/appearance" = uintZero;
+      "plugins/plugin-18/items" = [
         "+lock-screen"
         "-switch-user"
         "+suspend"
@@ -121,8 +123,8 @@
         "+logout"
         "-logout-dialog"
       ];
-      
-      
+
+
       ## 2ND PANEL
       "panels/panel-2/autohide-behavior" = mkUint 1;
       "panels/panel-2/length" = 1.0;
@@ -155,7 +157,7 @@
       "plugins/plugin-26" = "separator";
       "plugins/plugin-26/style" = uintZero;
     };
-    
+
     ## Power manager config
     xfce4-power-manager = {
       "xfce4-power-manager/show-tray-icon" = false;
@@ -163,12 +165,12 @@
       "xfce4-power-manager/show-presentation-indicator" = false;
       "xfce4-power-manager/presentation-mode" = false;
     };
-    
+
     # SuperL -> whiskermenu
     xfce4-keyboard-shortcuts = {
       "commands/custom/Super_L" = "xfce4-popup-whiskermenu";
     };
-    
+
   };
 
   ## FSGUARD Config
@@ -199,7 +201,24 @@
       mnt=/home
     '';
   };
-  
+
+  ## Timeout
+  xdg.configFile."xfce4/panel/xfce4-time-out-plugin-11.rc" = {
+    force = true;
+    text = ''
+      break-countdown-seconds=3600
+      lock-countdown-seconds=600
+      postpone-countdown-seconds=900
+      enabled=true
+      display-seconds=true
+      display-hours=false
+      display-time=true
+      display-icon=true
+      allow-postpone=true
+      auto-resume=true
+    '';
+  };
+
   ## DOCKLIKE Config
   xdg.configFile."xfce4/panel/docklike-20.rc" = {
     force = true;
@@ -216,7 +235,7 @@
       indicatorColorFromTheme=false
       inactiveColor=rgb(255,120,0)
       indicatorColor=rgb(64,191,168)
-      pinned=firefox;thunar;xfce4-terminal;writer;calc;impress;thunderbird;code;texmaker;featherpad;galculator;xfce4-screenshooter;org.keepassxc.KeePassXC;joplin;
+      pinned=firefox;thunar;xfce4-terminal;writer;calc;impress;thunderbird;dev.zed.Zed;texmaker;featherpad;galculator;xfce4-screenshooter;org.keepassxc.KeePassXC;joplin;
       forceIconSize=false
       iconSize=38
       keyComboActive=false
