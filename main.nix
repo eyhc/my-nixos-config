@@ -5,7 +5,7 @@
 
   imports = [
     # agenix module
-    "${builtins.fetchTarball 
+    "${builtins.fetchTarball
       "https://github.com/ryantm/agenix/archive/main.tar.gz"}/modules/age.nix"
 
     # softwares
@@ -32,7 +32,5 @@
   # Unfree software exceptions
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "veracrypt"
-    "geogebra"
-    "vscode"
   ];
 }

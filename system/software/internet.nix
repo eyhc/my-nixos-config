@@ -2,14 +2,11 @@
 
 {
   environment.systemPackages = with pkgs; [
-    #discord
     filezilla
     firefox
-    #openconnect
     thunderbird
     tor
     tor-browser
-    #transmission_4-gtk
     ungoogled-chromium
   ];
 

@@ -11,15 +11,16 @@ in {
   };
 
   imports = [
-    "${builtins.fetchTarball 
+    "${builtins.fetchTarball
       "https://github.com/ryantm/agenix/archive/main.tar.gz"}/modules/age-home.nix"
-  
+
     ./home/accessories-config.nix
     ./home/bash-config.nix
     ./home/ui-config.nix
     ./home/panels-config.nix
     ./home/nextcloud-joplin-config.nix
     ./home/internet-config.nix
+    ./home/extra-packages.nix
     ./home/vscode-config.nix
     ./home/dev-config.nix
     ./home/mime-apps-config.nix

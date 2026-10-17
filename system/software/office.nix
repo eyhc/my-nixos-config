@@ -7,7 +7,6 @@
     atril
     miktex
     pdfarranger
-    texmaker
     xournalpp
   ];
 }

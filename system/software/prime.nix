@@ -11,7 +11,5 @@
     cmatrix
     asciiquarium
     rig
-    bastet
-    greed
   ];
 }

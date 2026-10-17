@@ -8,7 +8,6 @@
     git-extras
     gnupg
     meld
-    qemu
     tig
   ];
 

@@ -5,6 +5,12 @@ let
   joplinExec = "${pkgs.joplin-cli}/bin/joplin";
   systemctlExec = "${pkgs.systemd}/bin/systemctl";
 in {
+  home.packages = with pkgs; [
+    joplin-cli
+    joplin-desktop
+    nextcloud-client
+  ];
+
   ## JOPLIN
   systemd.user.services.joplin-autostart = {
     Unit = {
