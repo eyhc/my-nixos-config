@@ -19,6 +19,7 @@ in {
     ./home/ui-config.nix
     ./home/panels-config.nix
     ./home/nextcloud-joplin-config.nix
+    ./home/ide-config.nix
     ./home/internet-config.nix
     ./home/extra-packages.nix
     ./home/vscode-config.nix
