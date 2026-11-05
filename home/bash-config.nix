@@ -26,7 +26,7 @@
       enableBashIntegration = true;
       settings = {
         "$schema" = "https://starship.rs/config-schema.json";
-        add_newline = true;
+        add_newline = false;
         format = lib.concatStrings [
           "┌─"
           "$username"

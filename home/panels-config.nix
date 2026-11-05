@@ -206,9 +206,9 @@
   xdg.configFile."xfce4/panel/xfce4-time-out-plugin-11.rc" = {
     force = true;
     text = ''
-      break-countdown-seconds=3600
-      lock-countdown-seconds=600
-      postpone-countdown-seconds=900
+      break-countdown-seconds=7200
+      lock-countdown-seconds=300
+      postpone-countdown-seconds=1800
       enabled=true
       display-seconds=true
       display-hours=false
@@ -235,7 +235,7 @@
       indicatorColorFromTheme=false
       inactiveColor=rgb(255,120,0)
       indicatorColor=rgb(64,191,168)
-      pinned=firefox;thunar;xfce4-terminal;writer;calc;impress;thunderbird;dev.zed.Zed;texmaker;featherpad;galculator;xfce4-screenshooter;org.keepassxc.KeePassXC;joplin;
+      pinned=firefox;thunar;xfce4-terminal;writer;calc;thunderbird;dev.zed.Zed;featherpad;galculator;xfce4-screenshooter;org.keepassxc.KeePassXC;joplin;discord;
       forceIconSize=false
       iconSize=38
       keyComboActive=false
