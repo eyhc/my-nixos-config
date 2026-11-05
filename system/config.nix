@@ -4,6 +4,7 @@
   # USERS
   users.groups.docker = {};
   users.groups.vboxusers = {};
+  users.groups.plugdev = {};
 
   age.secrets.guestpass.file = ../secrets/guest.pass.age;
   age.secrets.ecarrotpass.file = ../secrets/ecarrot.pass.age;
@@ -24,7 +25,8 @@
         isNormalUser = true;
         hashedPasswordFile = config.age.secrets.ecarrotpass.path;
         extraGroups = [
-          "networkmanager" "wheel" "docker" "vboxusers" "vboxsf" "dialout" "scanner" "adbusers"
+          "networkmanager" "wheel" "docker" "vboxusers" "vboxsf" "dialout"
+          "scanner" "adbusers" "plugdev" "cdrom"
         ];
       };
     };
