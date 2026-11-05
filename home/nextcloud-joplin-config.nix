@@ -12,21 +12,19 @@ in {
   ];
 
   ## JOPLIN
-  systemd.user.services.joplin-autostart = {
-    Unit = {
-      Description = "Joplin NoteBook Desktop";
-      After = [ "graphical-session.target" ];
-    };
-
-    Service = {
-      ExecStart = "${pkgs.joplin-desktop}/bin/joplin-desktop";
-      Restart = "on-failure";
-    };
-
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
-    };
-  };
+  #systemd.user.services.joplin-autostart = {
+  #  Unit = {
+  #    Description = "Joplin NoteBook Desktop";
+  #    After = [ "graphical-session.target" ];
+  #  };
+  #  Service = {
+  #    ExecStart = "${pkgs.joplin-desktop}/bin/joplin-desktop";
+  #    Restart = "on-failure";
+  #  };
+  #  Install = {
+  #    WantedBy = [ "graphical-session.target" ];
+  #  };
+  #};
 
   age.secrets.joplin.file = ../secrets/joplin.pass.age;
 

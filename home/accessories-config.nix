@@ -31,8 +31,8 @@ let
 
   keePassCache = ''
     [General]
-    LastActiveDatabase=/home/${config.home.username}/Nextcloud/passwords.kdbx
-    LastOpenedDatabases=/home/${config.home.username}/Nextcloud/passwords.kdbx
+    LastActiveDatabase=${config.home.homeDirectory}/Nextcloud/passwords.kdbx
+    LastOpenedDatabases=${config.home.homeDirectory}/Nextcloud/passwords.kdbx
   '';
 
 in {
@@ -62,22 +62,20 @@ in {
     echo "${keePassCache}" > "${config.xdg.cacheHome}/keepassxc/keepassxc.ini"
   '';
 
-  systemd.user.services.keepassxc-autostart = {
-    Unit = {
-      Description = "KeePassXC Password Manager";
-      After = [ "graphical-session.target" ];
-    };
+  #systemd.user.services.keepassxc-autostart = {
+  #  Unit = {
+  #    Description = "KeePassXC Password Manager";
+  #    After = [ "graphical-session.target" ];
+  #  };
+  #  Service = {
+  #    ExecStart = "${pkgs.keepassxc}/bin/keepassxc";
+  #    Restart = "on-failure";
+  #  };
+  #  Install = {
+  #    WantedBy = [ "graphical-session.target" ];
+  #  };
+  #};
 
-    Service = {
-      ExecStart = "${pkgs.keepassxc}/bin/keepassxc";
-      Restart = "on-failure";
-    };
-
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
-    };
-  };
-  
   ## GALCULATOR
   xdg.configFile."galculator/galculator.conf" = {
     force = true;

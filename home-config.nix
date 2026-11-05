@@ -27,7 +27,7 @@ in {
     ./home/mime-apps-config.nix
   ];
 
-  age.identityPaths = [ "/home/${user}/my-nixos-config/secrets/age.key" ];
+  age.identityPaths = [ "${config.home.homeDirectory}/my-nixos-config/secrets/age.key" ];
 
   nixpkgs.overlays = [
     (self: super: { nur = nur-pkgs; })
